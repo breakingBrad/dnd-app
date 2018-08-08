@@ -1,0 +1,51 @@
+{
+  "resourceName": "Races",
+  "resourceUrl": "http://www.dnd5eapi.co/api/races/",
+  "options": [
+        {
+            "name": "Dwarf",
+            "url": "http://www.dnd5eapi.co/api/races/1",
+            "id": "1"
+        },
+        {
+            "name": "Elf",
+            "url": "http://www.dnd5eapi.co/api/races/2",
+            "id": "2"
+        },
+        {
+            "name": "Halfling",
+            "url": "http://www.dnd5eapi.co/api/races/3",
+            "id": "3"
+        },
+        {
+            "name": "Human",
+            "url": "http://www.dnd5eapi.co/api/races/4",
+            "id": "4"
+        },
+        {
+            "name": "Dragonborn",
+            "url": "http://www.dnd5eapi.co/api/races/5",
+            "id": "5"
+        },
+        {
+            "name": "Gnome",
+            "url": "http://www.dnd5eapi.co/api/races/6",
+            "id": "6"
+        },
+        {
+            "name": "Half-Elf",
+            "url": "http://www.dnd5eapi.co/api/races/7",
+            "id": "7"
+        },
+        {
+            "name": "Half-Orc",
+            "url": "http://www.dnd5eapi.co/api/races/8",
+            "id": "8"
+        },
+        {
+            "name": "Tiefling",
+            "url": "http://www.dnd5eapi.co/api/races/9",
+            "id": "9"
+        }
+    ]
+}
