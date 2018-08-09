@@ -41,15 +41,14 @@ mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true })
 
 // routes:dndAPI
 app.get('/api/dnd/races', dndController.listRaces)
-// app.get('/api/dnd/races/:id', dndController.getRace)
+app.get('/api/dnd/races/:id', dndController.getRace)
 app.get('/api/dnd/classes', dndController.listClasses)
-// app.get('/api/dnd/classes/:id', dndController.getClass)
-// app.get('/api/dnd/proficiencies', dndController.listProficiencies)
-// app.get('/api/dnd/proficiencies', dndController.listProficiencies)
-// app.get('/api/dnd/skills', dndController.listSkills)
-// app.get('/api/dnd/spells', dndController.listSpells)
-// app.get('/api/dnd/:class/levels', dndController.listClassLevels)
-// app.get('.api/dnd/features', dndController.listFeatures)
+app.get('/api/dnd/classes/:id', dndController.getClass)
+app.get('/api/dnd/proficiencies', dndController.listProficiencies)
+app.get('/api/dnd/skills', dndController.listSkills)
+app.get('/api/dnd/spells', dndController.listSpells)
+app.get('/api/dnd/:class/levels', dndController.listClassLevels)
+app.get('.api/dnd/features', dndController.listFeatures)
 
 
 app.get('/', (req, res) => {
