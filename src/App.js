@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import SelectRace from './components/CharacterWizard/SelectRace/SelectRace';
 
 class App extends Component {
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">dnd app</h1>
-        </header>
+        <br/>
+        <SelectRace/>
       </div>
     );
   }

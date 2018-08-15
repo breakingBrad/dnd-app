@@ -6,7 +6,7 @@ module.exports = {
     console.log('Fetching Races')
     axios.get('http://www.dnd5eapi.co/api/races/')
       .then(response => {
-        res.send(response.data);
+        res.send(response.data.results);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);

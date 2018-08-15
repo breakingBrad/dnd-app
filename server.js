@@ -5,7 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const userController = require('./server/controllers/userController');
-const characterController = require('./server/controllers/characterController.js');
+const characterController = require('./server/controllers/characterController');
 const dndController = require('./server/controllers/dndController');
 
 // sessions
