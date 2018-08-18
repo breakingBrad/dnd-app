@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactJson from 'react-json-view'
 import axios from 'axios';
 import Select from 'react-select';
-import Button from '../../Button/Button'
+import Button from '../../../Button/Button'
 
 
 class SelectRace extends Component {

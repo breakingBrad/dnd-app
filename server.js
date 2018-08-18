@@ -3,19 +3,24 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const session = require('express-session');
+
 
 const userController = require('./server/controllers/userController');
 const characterController = require('./server/controllers/characterController');
 const dndController = require('./server/controllers/dndController');
 
-// sessions
-// const helmet = require('helmet');
-// const session = require('express-session');
-
 const app = express();
-
 require('dotenv').config();
 
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -28,10 +33,10 @@ mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true })
   });
 
 // // routes:user
-// app.post('/api/user/register', userController.userRegister)
-// app.post('/api/user/login', userController.userLogin)
-// app.get('/api/user/auth', userController.userAuthenticate)
-// app.post('/api/user/logout', userController.userLogout)
+app.post('/api/user/register', userController.userRegister)
+app.post('/api/user/login', userController.userLogin)
+app.get('/api/user/auth', userController.userAuthenticate)
+app.post('/api/user/logout', userController.userLogout)
 
 // // routes:character
 // app.get('/api/characters', characterController.listCharacters)

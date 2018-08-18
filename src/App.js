@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
-import SelectRace from './components/CharacterWizard/SelectRace/SelectRace';
+import routes from './routes';
 
 class App extends Component {
   render() {
@@ -8,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <br/>
-        <SelectRace/>
+       {routes}
       </div>
     );
   }

@@ -8,7 +8,8 @@ var admin = new User({
   name: {
     firstName: 'ad',
     lastName: 'min',
-  }
+  },
+  img: 'https://robohash.org/admin'
 })
 
 admin.save(function (err) {
