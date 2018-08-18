@@ -31,12 +31,16 @@ module.exports = {
     console.log(req.body);
     const username = req.body.username;
     const password = req.body.password;
-    console.log(`Logging in user: ${username}`);
+    let errorMsg = { error: `Incorrect Username or Password.` };
+    console.log(`Attempting Login for username: ${username}`);
     User.findOne({ username: username }, function(err, user) {
-      if (err) throw err;
+      if (err) 
+      console.log(err);
+      res.status(500).send(errorMsg);
       user.validatePassword(password, function(err, isMatch) {
-        if (err || !user) {
-          throw err 
+        if (err) {
+          console.log(err);
+          return res.status(500).send(errorMsg);
         } else {
           req.session.userId = user._id;
         }
@@ -45,8 +49,10 @@ module.exports = {
       })
     })
   },
-  userAuthenticate: (req, res, next) => {
+  getUser: (req, res, next) => {
     const userId = req.session.userId;
+    console.log(userId);
+    console.log(req.session);
   },
   userLogout: (req, res, next) => {
     console.log(`Logging out user: ${username}`);

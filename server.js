@@ -35,7 +35,7 @@ mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true })
 // // routes:user
 app.post('/api/user/register', userController.userRegister)
 app.post('/api/user/login', userController.userLogin)
-app.get('/api/user/auth', userController.userAuthenticate)
+app.get('/api/user/info', userController.getUser)
 app.post('/api/user/logout', userController.userLogout)
 
 // // routes:character

@@ -7,6 +7,7 @@ class Auth extends Component {
     this.state = {
       username: '',
       password: '',
+      error: false,
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -22,13 +23,14 @@ class Auth extends Component {
         password: this.state.password,
         user_img: `https://robohash.org/${this.state.username}`
     };
+    this.setState({ error: false });
     axios.post('/api/user/register', newUser)
       .then(() => {
         this.login()
     })
     .catch(err => {
+      this.setState({ error: true })
         console.warn(err);
-        throw(err);
     })
 } else 
   return null;
@@ -39,11 +41,16 @@ class Auth extends Component {
           username: this.state.username,
           password: this.state.password
       }
-      axios.post('/api/user/login', user)
+      this.setState({ error: false });
+      axios.post('http://localhost:4000/api/user/login', user)
         .then(results => {
           console.log(results)
           this.props.loginUser(results.data[0]);
           this.props.history.push('/#/dashboard')
+      })
+      .catch(err => {
+        this.setState({ error: true })
+        console.warn(err);
       })
   }
 
