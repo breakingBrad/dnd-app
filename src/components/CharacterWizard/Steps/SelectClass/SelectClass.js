@@ -3,17 +3,19 @@ import ReactJson from 'react-json-view'
 import axios from 'axios';
 import Select from 'react-select';
 import Button from '../../../Button/Button'
+import SelectChoices from '../SelectChoices/SelectChoices';
 
 
-class SelectRace extends Component {
+class SelectClass extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       selectedOption: null,
       options: [],
-      raceId: '',
-      race: [],
+      classId: '',
+      class: [],
+      proficiencyChoices: [],
       loading: true,
     }
   }
@@ -21,7 +23,7 @@ class SelectRace extends Component {
   handleChange = (selectedOption) => {
     this.setState({
       selectedOption,
-      raceId: selectedOption.value,
+      classId: selectedOption.value,
     });
     console.log(`Option selected:`, selectedOption);
   }
@@ -30,12 +32,8 @@ class SelectRace extends Component {
     this.getOptions();
   }
 
-  formatOptions() {
-    
-  }
-
   getOptions() {
-    axios.get(`http://localhost:4000/api/dnd/races`)
+    axios.get(`http://localhost:4000/api/dnd/classes`)
       .then(response => {
         let options = response.data;
         options.forEach(function(obj){
@@ -56,62 +54,53 @@ class SelectRace extends Component {
   getData(e, id) {
     e.preventDefault();
     this.setState({loading: true});
-    axios.get(`http://localhost:4000/api/dnd/races/${id}`)
+    axios.get(`http://localhost:4000/api/dnd/classes/${id}`)
       .then(response => {
         this.setState({
           loading: false,
-          race: response.data
+          class: response.data,
+          proficiencyChoices: response.data.proficiency_choices,
         })
       })
     }
 
   render() {
-    const race = this.state.race;
-    // const abilityModifiers = this.state.race.ability_bonuses.map((bonus, i) => {
-    //   return (
-    //     <ul>
-    //       <li key={i}>
-    //       {i}
-    //       </li>
-    //     </ul>
-    //   );
-    // });
+    const proficiencyChoices = this.state.proficiencyChoices
+      .map((choices, i) => (
+        <SelectChoices
+          {...proficiencyChoices}
+          key={i}
+        />
+      ));
     return (
       <div>
         <div className="select-container">
-        <strong>Step One: Select Race</strong>
+        <strong>Step Two: Select Class</strong>
         <br/><br/>
         <Select
         value={this.selectedOption}
         onChange={this.handleChange}
         options={this.state.options}
-        placeholder={'Select Race...'}
+        placeholder={'Select Class...'}
         />
         <Button
         type="submit"
         className="search-button"
-        onClick={e => this.getData(e, this.state.raceId, this.state.loading)}>
+        onClick={e => this.getData(e, this.state.classId, this.state.loading)}>
         Get Info
         </Button>
         </div>
         <div className="display-selection">
         {/*  */}
-        <h2>{race.name}</h2>
-        <p><strong>Speed: </strong>{race.speed}</p>
-        <p><strong>Size: </strong>{race.size}</p>
-        <p><strong>Alignment: </strong>{race.alignment}</p>
-        <p><strong>Ability Modifiers: </strong></p>
-          <ul>
-            {race.ability_bonuses ? race.ability_bonuses.map((bonus, i) => (
-              <li key={i}>
-                {bonus}
-              </li>
-            )) : null}
-          </ul>
+        <h2>{this.state.class.name}</h2>
+        <p><strong>Hit Die: </strong>{this.state.class.hit_die}</p>
+        <p><strong>Proficiencies: </strong>{this.state.class.proficiencies ? this.state.class.proficiencies.map((proficiency, i) => ((i ? ', ': '') + proficiency.name )) : null}</p>
+        {/* Rendering Proficiency Choices */}
+        {proficiencyChoices}
         {/*  */}
         <ReactJson
-        src={this.state.race}
-        name={this.state.race.name || null}
+        src={this.state.class}
+        name={this.state.class.name || null}
         collapsed="1" enableClipboard={false}
         displayDataTypes={false}
         theme="apathy"
@@ -122,4 +111,4 @@ class SelectRace extends Component {
   }
 }
 
-export default SelectRace;
+export default SelectClass;
