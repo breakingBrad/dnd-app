@@ -3,22 +3,12 @@ import ReactJson from 'react-json-view'
 import axios from 'axios';
 import Select from 'react-select';
 import Button from '../../../Button/Button'
-import SelectProficiencies from '../SelectProficiencies/SelectProficiencies';
-import Collapsible from 'react-collapsible'
 
-class SelectClass extends Component {
-  constructor(props) {
-    super(props);
 
+class SelectAbilityScores extends Component {
+  constructor() {
+    super();
     this.state = {
-      selectedOption: null,
-      options: [],
-      classId: '',
-      class: [],
-      proficiencyChoices: [],
-      loading: true,
-      classLevel: {},
-      level: 1,
     }
   }
 
@@ -146,4 +136,4 @@ class SelectClass extends Component {
   }
 }
 
-export default SelectClass;
+export default SelectAbilityScores;

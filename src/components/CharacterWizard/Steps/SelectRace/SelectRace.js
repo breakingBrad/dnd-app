@@ -15,6 +15,7 @@ class SelectRace extends Component {
       raceId: '',
       race: [],
       loading: true,
+      abilityMods: [],
     }
   }
 
@@ -23,16 +24,12 @@ class SelectRace extends Component {
       selectedOption,
       raceId: selectedOption.value,
     });
-    console.log(`Option selected:`, selectedOption);
   }
 
   componentDidMount() {
     this.getOptions();
   }
 
-  formatOptions() {
-    
-  }
 
   getOptions() {
     axios.get(`http://localhost:4000/api/dnd/races`)
@@ -55,19 +52,27 @@ class SelectRace extends Component {
 
   getData(e, id) {
     e.preventDefault();
-    this.setState({loading: true});
+    this.setState({ loading: true });
     axios.get(`http://localhost:4000/api/dnd/races/${id}`)
       .then(response => {
+        let abilities = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
+        let abilityMods = response.data.ability_bonuses.map((obj, i) => {
+          let newObj = {};
+            newObj[abilities[i]] = obj;
+            return newObj;
+            console.log(abilityMods);
+        });
         this.setState({
           loading: false,
-          race: response.data
+          race: response.data,
+          abilityMods: abilityMods,
         })
       })
     }
 
   render() {
     const race = this.state.race;
-    // const abilityModifiers = this.state.race.ability_bonuses.map((bonus, i) => {
+    // const abilityModifiers = this.state..map((bonus, i) => {
     //   return (
     //     <ul>
     //       <li key={i}>
@@ -108,7 +113,16 @@ class SelectRace extends Component {
               </li>
             )) : null}
           </ul>
+          <p><strong>Ability Modifiers: </strong></p>
+          <ul>
+          {this.state.abilityMods ? this.state.abilityMods.map((mod, i) => (
+              <li key={i}>
+                {JSON.stringify(mod)}
+              </li>
+            )) : null}
+          </ul>
         {/*  */}
+        
         <ReactJson
         src={this.state.race}
         name={this.state.race.name || null}
