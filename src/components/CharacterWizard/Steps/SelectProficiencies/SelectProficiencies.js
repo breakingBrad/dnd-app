@@ -20,15 +20,14 @@ class SelectProficiencies extends Component {
   }
 
   componentDidMount(props) {
-    let options = this.props.options;
-    options.forEach(function(obj){
-      obj.label = obj.name;
-      delete obj.name;
-      obj.value = obj.url.substr(obj.url.lastIndexOf('/') + 1);
-      delete obj.url;
+    let formattedOptions = this.props.options.map(function (obj) {
+      return {
+        label: obj.name,
+        value: obj.url.substr(obj.url.lastIndexOf('/') + 1),
+      }
     })
     this.setState({
-      options: options.sort(),
+      options: formattedOptions.sort(),
       choices: this.props.choose,
       values: [],
     })
