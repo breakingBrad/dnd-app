@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import SelectRace from './Steps/SelectRace/SelectRace';
 import SelectClass from './Steps/SelectClass/SelectClass';
+import SelectAbilityScores from './Steps/SelectAbilityScores/SelectAbilityScores';
 
 class CharacterWizard extends Component {
 
@@ -11,14 +12,21 @@ class CharacterWizard extends Component {
       <div>
         Character Creator:
           </div>
-          <SelectRace/>
+          <SelectRace />
           <br/><br/>
           <hr/>
           <br/><br/>
           {/* <Switch>
             <Route path="/wizard/select-race" component={SelectRace} />
           </Switch> */}
-          <SelectClass/>
+          <SelectClass />
+          <br/><br/>
+          <hr/>
+          <br/><br/>
+          <SelectAbilityScores />
+          <br/><br/>
+          <hr/>
+          <br/><br/>
         </div>
     )
   }

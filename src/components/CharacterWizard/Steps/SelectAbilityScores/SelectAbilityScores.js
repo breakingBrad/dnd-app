@@ -1,136 +1,114 @@
 import React, { Component } from 'react';
-import ReactJson from 'react-json-view'
-import axios from 'axios';
-import Select from 'react-select';
-import Button from '../../../Button/Button'
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+let id = 0;
 
 class SelectAbilityScores extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      racialBonuses: [],
+      str: '',
+      dex: '',
+      con: '',
+      int: '',
+      wis: '', 
+      cha: '',
+      strRaceBonus: 0,
+      dexRaceBonus: 0,
+      conRaceBonus: 0,
+      intRaceBonus: 0,
+      wisRaceBonus: 0, 
+      chaRaceBonus: 0,
+      strMod: 0,
+      dexMod: 0,
+      conMod: 0,
+      intMod: 0,
+      wisMod: 0, 
+      chaMod: 0,
+      strTotal: 0,
+      dexTotal: 0,
+      conTotal: 0,
+      intTotal: 0,
+      wisTotal: 0, 
+      chaTotal: 0,
     }
-  }
-
-  handleChange = (selectedOption) => {
-    this.setState({
-      selectedOption,
-      classId: selectedOption.value,
-    });
+    this.handleChange = this.handleChange.bind(this);
+    this.createRow = this.createRow.bind(this);
   }
 
   componentDidMount() {
-    this.getOptions();
-
+    // this.setstate({});
   }
 
-  getOptions() {
-    axios.get(`http://localhost:4000/api/dnd/classes`)
-      .then(response => {
-        let options = response.data;
-        options.forEach(function(obj){
-          obj.label = obj.name;
-          delete obj.name;
-          obj.value = obj.url.substr(obj.url.lastIndexOf('/') + 1);
-          delete obj.url;
-        })
-        this.setState({
-          options: options.sort(),
-        })
-      })
-      .catch(err => {
-        console.warn(err);
-      });
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  getData(e, id, name) {
-    e.preventDefault();
-    this.setState({ loading: true, proficiencyChoices: [] });
-    axios.get(`http://localhost:4000/api/dnd/classes/${id}`)
-      .then(response => {
-        this.setState({
-          loading: false,
-          class: response.data,
-          proficiencyChoices: response.data.proficiency_choices,
-        })
-      })
-      const proficiencyOptions = this.state.proficiencyChoices;
-      return axios.get(`http://localhost:4000/api/dnd/classes/${name}/level/${this.state.level}`)
-        .then(response => {
-          this.setState({
-            classLevel: response.data,
-          })
-        })
-        .catch(err => {
-          console.warn(err);
-        });
-    }
+  createRow = (name, base, mod, racial, other, total) => {
+    id +=1;
+    return { id, name, base, mod, racial, other, total };
+  }
 
   render() {
-    const proficiencySelect = this.state.proficiencyChoices
-      .map((choices, i) => (
-        <SelectProficiencies
-          // {...proficiencySelect}
-          data={this.state.proficiencyChoices}
-          choose={this.state.proficiencyChoices[i].choose}
-          options={this.state.proficiencyChoices[i].from}
-          key={i}
-        />
-      ));
+    let { str, dex, con, int, wis, cha, strRaceBonus , dexRaceBonus , conRaceBonus , intRaceBonus , wisRaceBonus  , chaRaceBonus } = this.state;
+    const rows = [
+      this.createRow('Strength', `${str}`, `${strRaceBonus}`, `${ str ? Math.ceil(( str -= 10 )/ 2) : 0}`, `${str ? (str += strRaceBonus) : 0}`),
+      this.createRow('Dexterity', `${dex}`,`${dexRaceBonus}`, `${ dex ? Math.ceil(( dex -= 10 )/ 2) : 0}`, `${dex ? (dex += dexRaceBonus) : 0}`),
+      this.createRow('Constitution', `${con}`,`${conRaceBonus}`, `${ con ? Math.ceil(( con -= 10 )/ 2) : 0}`, `${con ? (con += conRaceBonus) : 0}`),
+      this.createRow('Intelligence', `${int}`, `${intRaceBonus}`, `${ int ? Math.ceil(( int -= 10 )/ 2) : 0}`, `${int ? (int += intRaceBonus) : 0}`),
+      this.createRow('Wisdom', `${wis}`, `${wisRaceBonus}`, `${ wis ? Math.ceil(( wis -= 10 )/ 2) : 0}`, `${wis ? (wis += wisRaceBonus) : 0}`),
+      this.createRow('Charisma', `${cha}`,`${chaRaceBonus}`, `${ cha ? Math.ceil(( cha -= 10 )/ 2) : 0}`, `${cha ? (cha += chaRaceBonus) : 0}`),
+    ];
+
     return (
       <div>
-        <div className="select-container">
-        <strong>Step Two: Select Class</strong>
-        <br/><br/>
-
-        <Select
-        value={this.selectedOption}
-        onChange={this.handleChange}
-        options={this.state.options}
-        placeholder={'Select Class...'}
-        />
-
-        <Button
-        type="submit"
-        className="search-button"
-        onClick={e => this.getData(e, this.state.classId, this.state.selectedOption.label.toLowerCase(), this.state.loading)}>
-        Get Info
-        </Button>
-        </div>
-
-        <div className="display-selection">
-        {/*  */}
-        <h2>{this.state.class.name}</h2>
-        <p><strong>Hit Die: </strong>{this.state.class.hit_die}</p>
-        <p><strong>Proficiencies: </strong>{this.state.class.proficiencies ? this.state.class.proficiencies.map((proficiency, i) => ((i ? ', ': '') + proficiency.name )) : null}</p>
-        <p><strong>Features: </strong>{this.state.classLevel.features ? this.state.classLevel.features.map((feature, i) => ((i ? ', ': '') + feature.name )) : null}</p>
-
-        {/* Rendering Proficiency Choices */}
-        <strong>Proficiency Choices:</strong>
-        {proficiencySelect}
-        {/*  */}
-
-        {/* Class Data */}
-        <ReactJson
-        src={this.state.class}
-        name={this.state.class.name || null}
-        collapsed="true" enableClipboard={false}
-        displayDataTypes={false}
-        theme="apathy"
-        />
-        {/*  */}
-
-        {/* Class Level Data */}
-        <ReactJson
-        src={this.state.classLevel}
-        name="Class Level Data"
-        collapsed="true" enableClipboard={false}
-        displayDataTypes={false}
-        theme="apathy"
-        />
-        {/*  */}
-
-        </div>
+      <strong>Step Three: Ability Scores</strong>
+      <p>Instructions: Roll four six-sided-dice (d6) and drop the lowest value.  Add up the remaining three values and input the total for each ability.</p>
+      <br /><br />
+      <div className="ability-input-container">
+      <Paper>
+        <TextField type="number" className="ability-input" name="str" label="STR" value={this.state.str} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
+        <TextField type="number" className="ability-input" name="dex" label="DEX" value={this.state.dex} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
+        <TextField type="number" className="ability-input" name="con" label="CON" value={this.state.con} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
+        <TextField type="number" className="ability-input" name="int" label="INT" value={this.state.int} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
+        <TextField type="number" className="ability-input" name="wis" label="WIS" value={this.state.wis} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
+        <TextField type="number" className="ability-input" name="cha" label="CHA" value={this.state.cha} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
+      </Paper>
+      </div>
+      <br /> <br />
+      <Paper>
+        <Table className="abilities-display">
+        <TableHead>
+          <TableRow>
+            <TableCell></TableCell>
+            <TableCell>Base Score</TableCell>
+            <TableCell>Racial Bonus</TableCell>
+            <TableCell>Modifier</TableCell>
+            <TableCell>Total Score</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        {rows.map(row => {
+            return (
+              <TableRow key={row.id}>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.base}</TableCell>
+                <TableCell>{row.mod}</TableCell>
+                <TableCell>{row.racial}</TableCell>
+                <TableCell>{row.other}</TableCell>
+                <TableCell>{row.total}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+        </Table>
+      </Paper>
       </div>
     );
   }
