@@ -34,15 +34,9 @@ class SelectRace extends Component {
   getOptions() {
     axios.get(`http://localhost:4000/api/dnd/races`)
       .then(response => {
-        let options = response.data;
-        options.forEach(function(obj){
-          obj.label = obj.name;
-          delete obj.name;
-          obj.value = obj.url.substr(obj.url.lastIndexOf('/') + 1);
-          delete obj.url;
-        })
+        let options = response.data.sort();
         this.setState({
-          options: options.sort(),
+          options: options,
         })
       })
       .catch(err => {
@@ -72,20 +66,11 @@ class SelectRace extends Component {
 
   render() {
     const race = this.state.race;
-    // const abilityModifiers = this.state..map((bonus, i) => {
-    //   return (
-    //     <ul>
-    //       <li key={i}>
-    //       {i}
-    //       </li>
-    //     </ul>
-    //   );
-    // });
     return (
       <div>
-        <div className="select-container">
-        <strong>Step One: Select Race</strong>
+        <strong>Step One: Race</strong>
         <br/><br/>
+        <div className="select-container">
         <Select
         value={this.selectedOption}
         onChange={this.handleChange}

@@ -1,12 +1,14 @@
 const axios = require('axios');
 const _ = require('lodash');
+const data = require('./dataController')
 
 module.exports = {
   listRaces: (req, res, next) => {
     console.log('Fetching Races')
     axios.get('http://www.dnd5eapi.co/api/races/')
       .then(response => {
-        res.send(response.data.results);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -29,7 +31,8 @@ module.exports = {
     console.log('Fetching Subraces')
     axios.get('http://www.dnd5eapi.co/api/subraces/')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -52,7 +55,8 @@ module.exports = {
     console.log('Fetching Classes')
     axios.get('http://www.dnd5eapi.co/api/classes/')
       .then(response => {
-        res.send(response.data.results);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -146,7 +150,8 @@ module.exports = {
     console.log('Fetching Proficiencies')
     axios.get('http://www.dnd5eapi.co/api/proficiencies/')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -169,7 +174,8 @@ module.exports = {
     console.log('Fetching Skills')
     axios.get('http://www.dnd5eapi.co/api/skills/')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -192,7 +198,8 @@ module.exports = {
     console.log('Fetching Spells')
     axios.get('http://www.dnd5eapi.co/api/spells/')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -216,7 +223,8 @@ module.exports = {
     axios.get('http://www.dnd5eapi.co/api/features')
       .then(response => {
         let uniqueResponseData = _.uniqBy(response.data.results, "url");
-        res.send(uniqueResponseData);
+        let options = data.formatOptions(uniqueResponseData);
+        res.send(options);
         console.log(`Total Results: ${response.data.results.length}`)
         console.log(`Unique Results: ${uniqueResponseData.length}`)
       })
@@ -242,7 +250,8 @@ module.exports = {
     console.log('Fetching Ability Scores')
     axios.get('http://www.dnd5eapi.co/api/ability-scores')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -266,7 +275,8 @@ module.exports = {
     console.log('Fetching Languages')
     axios.get('http://www.dnd5eapi.co/api/languages')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -290,7 +300,8 @@ module.exports = {
     console.log('Fetching Equipment')
     axios.get('http://www.dnd5eapi.co/api/equipment')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -314,7 +325,8 @@ module.exports = {
     console.log('Fetching Condition')
     axios.get('http://www.dnd5eapi.co/api/conditions')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -338,7 +350,8 @@ module.exports = {
     console.log('Fetching Damage Type')
     axios.get('http://www.dnd5eapi.co/api/damage-types')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -362,7 +375,8 @@ module.exports = {
     console.log('Fetching Magic School')
     axios.get('http://www.dnd5eapi.co/api/magic-schools')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);
@@ -386,7 +400,8 @@ module.exports = {
     console.log('Fetching Monsters')
     axios.get('http://www.dnd5eapi.co/api/monsters')
       .then(response => {
-        res.send(response.data);
+        let options = data.formatOptions(response.data.results);
+        res.send(options);
       })
       .catch(err => {
         res.status(err.response.status).send(err.response.data);

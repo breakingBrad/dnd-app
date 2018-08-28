@@ -4,7 +4,6 @@ import axios from 'axios';
 import Select from 'react-select';
 import Button from '../../../Button/Button'
 import SelectProficiencies from '../SelectProficiencies/SelectProficiencies';
-import Collapsible from 'react-collapsible'
 
 class SelectClass extends Component {
   constructor(props) {
@@ -36,18 +35,12 @@ class SelectClass extends Component {
 
   getOptions() {
     axios.get(`http://localhost:4000/api/dnd/classes`)
-      .then(response => {
-        let options = response.data;
-        options.forEach(function(obj){
-          obj.label = obj.name;
-          delete obj.name;
-          obj.value = obj.url.substr(obj.url.lastIndexOf('/') + 1);
-          delete obj.url;
-        })
-        this.setState({
-          options: options.sort(),
-        })
+    .then(response => {
+      let options = response.data.sort();
+      this.setState({
+        options: options,
       })
+    })
       .catch(err => {
         console.warn(err);
       });
@@ -64,7 +57,7 @@ class SelectClass extends Component {
           proficiencyChoices: response.data.proficiency_choices,
         })
       })
-      const proficiencyOptions = this.state.proficiencyChoices;
+      // const proficiencyOptions = this.state.proficiencyChoices;
       return axios.get(`http://localhost:4000/api/dnd/classes/${name}/level/${this.state.level}`)
         .then(response => {
           this.setState({
@@ -89,9 +82,9 @@ class SelectClass extends Component {
       ));
     return (
       <div>
-        <div className="select-container">
-        <strong>Step Two: Select Class</strong>
+        <strong>Step Two: Class</strong>
         <br/><br/>
+        <div className="select-container">
 
         <Select
         value={this.selectedOption}

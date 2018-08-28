@@ -48,8 +48,8 @@ app.post('/api/user/logout', userController.userLogout)
 // race
 app.get('/api/dnd/races', dndController.listRaces)
 app.get('/api/dnd/races/:raceId', dndController.getRace)
-app.get('/api/dnd/api/subraces', dndController.listSubraces)
-app.get('/api/dnd/api/subraces/:subraceId', dndController.getSubrace)
+app.get('/api/dnd/subraces', dndController.listSubraces)
+app.get('/api/dnd/subraces/:subraceId', dndController.getSubrace)
 // class
 app.get('/api/dnd/classes', dndController.listClasses)
 app.get('/api/dnd/classes/:classId', dndController.getClass)
