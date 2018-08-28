@@ -421,14 +421,4 @@ module.exports = {
         console.log(err);
       })
   },
-  formatOptions: (res) => {
-    let options = res.data;
-    options.forEach(function(obj) {
-      obj.label = obj.name;
-      obj.value = obj.value = obj.url.substr(obj.url.lastIndexOf('/') + 1);
-      delete obj.name;
-      delete obj.value;
-    })
-    return options;
-    },
-  }
+}
