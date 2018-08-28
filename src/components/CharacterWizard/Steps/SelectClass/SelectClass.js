@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ReactJson from 'react-json-view'
 import axios from 'axios';
 import Select from 'react-select';
 import Button from '../../../Button/Button'
 import SelectProficiencies from '../SelectProficiencies/SelectProficiencies';
+import Paper from '@material-ui/core/Paper';
 
 class SelectClass extends Component {
   constructor(props) {
@@ -36,9 +36,9 @@ class SelectClass extends Component {
   getOptions() {
     axios.get(`http://localhost:4000/api/dnd/classes`)
     .then(response => {
-      let options = response.data.sort();
+      let options = response.data;
       this.setState({
-        options: options,
+        options: options.sort(),
       })
     })
       .catch(err => {
@@ -82,6 +82,7 @@ class SelectClass extends Component {
       ));
     return (
       <div>
+        <Paper>
         <strong>Step Two: Class</strong>
         <br/><br/>
         <div className="select-container">
@@ -111,29 +112,11 @@ class SelectClass extends Component {
         {/* Rendering Proficiency Choices */}
         <strong>Proficiency Choices:</strong>
         {proficiencySelect}
-        {/*  */}
-
-        {/* Class Data */}
-        <ReactJson
-        src={this.state.class}
-        name={this.state.class.name || null}
-        collapsed="true" enableClipboard={false}
-        displayDataTypes={false}
-        theme="apathy"
-        />
-        {/*  */}
-
-        {/* Class Level Data */}
-        <ReactJson
-        src={this.state.classLevel}
-        name="Class Level Data"
-        collapsed="true" enableClipboard={false}
-        displayDataTypes={false}
-        theme="apathy"
-        />
+        <br />
         {/*  */}
 
         </div>
+        </Paper>
       </div>
     );
   }

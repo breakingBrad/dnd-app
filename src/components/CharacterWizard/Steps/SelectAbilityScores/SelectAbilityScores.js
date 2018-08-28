@@ -58,12 +58,12 @@ class SelectAbilityScores extends Component {
   render() {
     let { str, dex, con, int, wis, cha, strRaceBonus , dexRaceBonus , conRaceBonus , intRaceBonus , wisRaceBonus  , chaRaceBonus } = this.state;
     const rows = [
-      this.createRow('Strength', `${str}`, `${strRaceBonus}`, `${ str ? Math.ceil(( str -= 10 )/ 2) : 0}`, `${str ? (str += strRaceBonus) : 0}`),
-      this.createRow('Dexterity', `${dex}`,`${dexRaceBonus}`, `${ dex ? Math.ceil(( dex -= 10 )/ 2) : 0}`, `${dex ? (dex += dexRaceBonus) : 0}`),
-      this.createRow('Constitution', `${con}`,`${conRaceBonus}`, `${ con ? Math.ceil(( con -= 10 )/ 2) : 0}`, `${con ? (con += conRaceBonus) : 0}`),
-      this.createRow('Intelligence', `${int}`, `${intRaceBonus}`, `${ int ? Math.ceil(( int -= 10 )/ 2) : 0}`, `${int ? (int += intRaceBonus) : 0}`),
-      this.createRow('Wisdom', `${wis}`, `${wisRaceBonus}`, `${ wis ? Math.ceil(( wis -= 10 )/ 2) : 0}`, `${wis ? (wis += wisRaceBonus) : 0}`),
-      this.createRow('Charisma', `${cha}`,`${chaRaceBonus}`, `${ cha ? Math.ceil(( cha -= 10 )/ 2) : 0}`, `${cha ? (cha += chaRaceBonus) : 0}`),
+      this.createRow('Strength', `${str}`, `${strRaceBonus}`, `${ str ? Math.ceil(( str -= 10 )/ 2) : 0}`, `${str ? (str += strRaceBonus += 10) : 0}`),
+      this.createRow('Dexterity', `${dex}`,`${dexRaceBonus}`, `${ dex ? Math.ceil(( dex -= 10 )/ 2) : 0}`, `${dex ? (dex += dexRaceBonus += 10) : 0}`),
+      this.createRow('Constitution', `${con}`,`${conRaceBonus}`, `${ con ? Math.ceil(( con -= 10 )/ 2) : 0}`, `${con ? (con += conRaceBonus += 10) : 0}`),
+      this.createRow('Intelligence', `${int}`, `${intRaceBonus}`, `${ int ? Math.ceil(( int -= 10 )/ 2) : 0}`, `${int ? (int += intRaceBonus += 10) : 0}`),
+      this.createRow('Wisdom', `${wis}`, `${wisRaceBonus}`, `${ wis ? Math.ceil(( wis -= 10 )/ 2) : 0}`, `${wis ? (wis += wisRaceBonus += 10) : 0}`),
+      this.createRow('Charisma', `${cha}`,`${chaRaceBonus}`, `${ cha ? Math.ceil(( cha -= 10 )/ 2) : 0}`, `${cha ? (cha += chaRaceBonus += 10) : 0}`),
     ];
 
     return (

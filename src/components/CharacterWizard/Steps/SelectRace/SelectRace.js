@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ReactJson from 'react-json-view'
 import axios from 'axios';
 import Select from 'react-select';
 import Button from '../../../Button/Button'
+import Paper from '@material-ui/core/Paper';
 
 
 class SelectRace extends Component {
@@ -15,7 +15,6 @@ class SelectRace extends Component {
       raceId: '',
       race: [],
       loading: true,
-      abilityMods: [],
     }
   }
 
@@ -49,17 +48,9 @@ class SelectRace extends Component {
     this.setState({ loading: true });
     axios.get(`http://localhost:4000/api/dnd/races/${id}`)
       .then(response => {
-        let abilities = ['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'];
-        let abilityMods = response.data.ability_bonuses.map((obj, i) => {
-          let newObj = {};
-            newObj[abilities[i]] = obj;
-            return newObj;
-            console.log(abilityMods);
-        });
         this.setState({
           loading: false,
           race: response.data,
-          abilityMods: abilityMods,
         })
       })
     }
@@ -68,6 +59,7 @@ class SelectRace extends Component {
     const race = this.state.race;
     return (
       <div>
+        <Paper>
         <strong>Step One: Race</strong>
         <br/><br/>
         <div className="select-container">
@@ -91,31 +83,20 @@ class SelectRace extends Component {
         <p><strong>Size: </strong>{race.size}</p>
         <p><strong>Alignment: </strong>{race.alignment}</p>
         <p><strong>Ability Modifiers: </strong></p>
+        {race.ability_bonuses ? (
           <ul>
-            {race.ability_bonuses ? race.ability_bonuses.map((bonus, i) => (
-              <li key={i}>
-                {bonus}
-              </li>
-            )) : null}
+          <li>STR: {race.ability_bonuses[0]}</li>
+          <li>DEX: {race.ability_bonuses[1]}</li>
+          <li>CON: {race.ability_bonuses[2]}</li>
+          <li>INT: {race.ability_bonuses[3]}</li>
+          <li>WIS: {race.ability_bonuses[4]}</li>
+          <li>CHA: {race.ability_bonuses[5]}</li>
           </ul>
-          <p><strong>Ability Modifiers: </strong></p>
-          <ul>
-          {this.state.abilityMods ? this.state.abilityMods.map((mod, i) => (
-              <li key={i}>
-                {JSON.stringify(mod)}
-              </li>
-            )) : null}
-          </ul>
-        {/*  */}
-        
-        <ReactJson
-        src={this.state.race}
-        name={this.state.race.name || null}
-        collapsed="1" enableClipboard={false}
-        displayDataTypes={false}
-        theme="apathy"
-        />
+        ) : null 
+        }
+        <br />
         </div>
+        </Paper>
       </div>
     );
   }

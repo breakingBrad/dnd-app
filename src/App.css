@@ -1,8 +1,11 @@
 body {
   background-color: #a2b1a7;
+    padding-top: 60px;
 }
-.App {
+
+.app-component {
  text-align: left;
+  padding-top: 600px;
 }
 
 .App-logo {
@@ -26,18 +29,6 @@ body {
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.json-block {
-  display: block;
-  font-family: monospace;
-  cursor: default;
-  position: relative;
-  padding: 10px;
-  border-radius: 3px;
-  margin: 10px 0px;
-  text-align: left;
+.dashboard-container {
+  padding-top: 600px;
 }
