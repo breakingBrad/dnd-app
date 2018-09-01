@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import Paper from '@material-ui/core/Paper';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
-
 
 class SelectRace extends Component {
   constructor(props) {
