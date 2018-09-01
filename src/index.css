@@ -2,4 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+  background-color:  #eff1f0;
+    background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+    overflow-y: scroll;
 }

@@ -67,22 +67,21 @@ class SelectAbilityScores extends Component {
     ];
 
     return (
-      <div>
-      <strong>Step Three: Ability Scores</strong>
+      <div className="step-container">
       <p>Instructions: Roll four six-sided-dice (d6) and drop the lowest value.  Add up the remaining three values and input the total for each ability.</p>
       <br /><br />
-      <div className="ability-input-container">
-      <Paper>
+      <div>
+      <Paper className="ability-input-container">
         <TextField type="number" className="ability-input" name="str" label="STR" value={this.state.str} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
         <TextField type="number" className="ability-input" name="dex" label="DEX" value={this.state.dex} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
         <TextField type="number" className="ability-input" name="con" label="CON" value={this.state.con} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
         <TextField type="number" className="ability-input" name="int" label="INT" value={this.state.int} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
         <TextField type="number" className="ability-input" name="wis" label="WIS" value={this.state.wis} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
         <TextField type="number" className="ability-input" name="cha" label="CHA" value={this.state.cha} onChange={this.handleChange} InputLabelProps={{ shrink: true, }} inputProps={{ min: "0", max: "18", }} margin="normal" defaultValue={0} />
-      </Paper>
+      </Paper> 
       </div>
       <br /> <br />
-      <Paper>
+      <Paper className="ability-table-container">
         <Table className="abilities-display">
         <TableHead>
           <TableRow>

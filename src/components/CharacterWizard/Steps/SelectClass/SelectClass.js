@@ -81,9 +81,7 @@ class SelectClass extends Component {
         />
       ));
     return (
-      <div>
-        <Paper>
-        <strong>Step Two: Class</strong>
+      <div className="step-container">
         <br/><br/>
         <div className="select-container">
 
@@ -101,21 +99,14 @@ class SelectClass extends Component {
         Get Info
         </Button>
         </div>
-
-        <div className="display-selection">
-        {/*  */}
+        <Paper className="display-selection">
         <h2>{this.state.class.name}</h2>
         <p><strong>Hit Die: </strong>{this.state.class.hit_die}</p>
         <p><strong>Proficiencies: </strong>{this.state.class.proficiencies ? this.state.class.proficiencies.map((proficiency, i) => ((i ? ', ': '') + proficiency.name )) : null}</p>
         <p><strong>Features: </strong>{this.state.classLevel.features ? this.state.classLevel.features.map((feature, i) => ((i ? ', ': '') + feature.name )) : null}</p>
-
         {/* Rendering Proficiency Choices */}
-        <strong>Proficiency Choices:</strong>
+        <strong>Proficiency Choices: </strong>
         {proficiencySelect}
-        <br />
-        {/*  */}
-
-        </div>
         </Paper>
       </div>
     );

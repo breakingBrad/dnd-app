@@ -43,6 +43,7 @@ module.exports = {
           return res.status(500).send(errorMsg);
         } else {
           req.session.userId = user._id;
+          return user;
         }
         console.log(`Password Match:`, isMatch);
         console.log(`Session User Id: ${req.session.userId}`);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavBar from '../NavBar/NavBar';
 import CharacterWizard from '../CharacterWizard/CharacterWizard';
 
 class Dashboard extends Component {
@@ -13,10 +14,12 @@ class Dashboard extends Component {
 
   render() {
     return (
+      <div>
+      <NavBar/>
       <div className="dashboard-container">
-      Dashboard
       <div>
         <CharacterWizard/>
+      </div>
       </div>
       </div>
     );

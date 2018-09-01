@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
-import Button from '../../../Button/Button'
 import Paper from '@material-ui/core/Paper';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 
 class SelectRace extends Component {
@@ -15,15 +16,25 @@ class SelectRace extends Component {
       raceId: '',
       race: [],
       loading: true,
+      
     }
   }
 
-  handleChange = (selectedOption) => {
+  handleChange = (selectedOption, e, id) => {
     this.setState({
       selectedOption,
       raceId: selectedOption.value,
-    });
-  }
+      loading: true, 
+    })
+      axios.get(`http://localhost:4000/api/dnd/races/${selectedOption.value}`)
+        .then(response => {
+          this.setState({
+            loading: false,
+            race: response.data,
+            selectFocus: false,
+          })
+        })
+    }
 
   componentDidMount() {
     this.getOptions();
@@ -43,45 +54,32 @@ class SelectRace extends Component {
       });
   }
 
-  getData(e, id) {
-    e.preventDefault();
-    this.setState({ loading: true });
-    axios.get(`http://localhost:4000/api/dnd/races/${id}`)
-      .then(response => {
-        this.setState({
-          loading: false,
-          race: response.data,
-        })
-      })
-    }
-
   render() {
     const race = this.state.race;
     return (
-      <div>
-        <Paper>
-        <strong>Step One: Race</strong>
-        <br/><br/>
+      <div className="step-container">
         <div className="select-container">
         <Select
         value={this.selectedOption}
         onChange={this.handleChange}
         options={this.state.options}
         placeholder={'Select Race...'}
+        blurInputOnSelect={true}
         />
-        <Button
-        type="submit"
-        className="search-button"
-        onClick={e => this.getData(e, this.state.raceId, this.state.loading)}>
-        Get Info
-        </Button>
         </div>
-        <div className="display-selection">
-        {/*  */}
+        <div className="display-selection-container">
+        <Paper className="selection-img-container">
+          <img className="display-img" src={require(`../../../../images/races/${this.state.raceId ? this.state.raceId : 'placeholder'}.jpeg`)} alt="race img"/>
         <h2>{race.name}</h2>
         <p><strong>Speed: </strong>{race.speed}</p>
         <p><strong>Size: </strong>{race.size}</p>
+        <p>{race.size_description}</p>
+        </Paper>
+        <Paper className="display-selection">
+        <p><strong>Age: </strong>{race.age}</p>
         <p><strong>Alignment: </strong>{race.alignment}</p>
+        <p><strong>Languages: </strong>{race.language_desc}</p>
+        <p>{race.languages ? race.languages.map((language, i) => ((i ? ', ': '') + language.name )) : null}</p>
         <p><strong>Ability Modifiers: </strong></p>
         {race.ability_bonuses ? (
           <ul>
@@ -94,9 +92,9 @@ class SelectRace extends Component {
           </ul>
         ) : null 
         }
-        <br />
-        </div>
+        <p><strong>Traits: </strong>{race.traits ? race.traits.map((trait, i) => ((i ? ', ': '') + trait.name )) : null}</p>
         </Paper>
+        </div>
       </div>
     );
   }

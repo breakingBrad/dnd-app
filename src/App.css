@@ -1,34 +1,192 @@
-body {
-  background-color: #a2b1a7;
-    padding-top: 60px;
+/* .App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+} */
+
+.app-content {
+
 }
 
-.app-component {
- text-align: left;
-  padding-top: 600px;
+/* auth */
+.auth-container {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px 70px;
+  box-shadow: rgba(71, 71, 71, 0.507) 0px 4px 4px 4px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  height: 50vh;
+  width: 50vw;
+  background-color: #f9f9fd;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.auth-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.App-header {
-  background-color: rgb(3, 26, 22);
-  text-align: center;
-  height: 150px;
-  padding: 20px;
-  color: rgb(210, 231, 228);
+.auth-header-container, img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.App-title {
-  font-size: 1.5em;
+.auth-icon-container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.App-intro {
-  font-size: large;
+.auth-icon {
+  width: 100px;
+  align-content: center;
 }
+
+.auth-button-container {
+  display: flex;
+  justify-content: center;
+  justify-items: space-between;
+}
+
+.auth-container h1 {
+  font-size: 60px;
+  margin: 10px;
+  
+}
+
+.auth-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input {
+  border-radius: 2px;
+  border: .5;
+  padding: 3px 2px;
+  font-size: 12px;
+  display: inline-block;
+  margin: 4px 5px;
+  width: 225px
+}
+
+/* navbar */
+.nav-user-icon {
+  position: absolute;
+  right: 0;
+}
+
+/* dashboard */
 
 .dashboard-container {
-  padding-top: 600px;
+  margin-top: 75px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* character wizard */
+
+.wizard-expansion-panel {
+  margin: .5%;
+  justify-content: stretch;
+}
+
+.MuiExpansionPanelDetails-root-101 {
+  margin: auto;
+  justify-content: space-evenly;
+  align-items: stretch;
+
+}
+.expansion-summary {
+  box-shadow: 0px 3px 5px -3px rgba(0,0,0,0.7);
+}
+
+
+.character-wizard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5% 10% 5% 10%;
+  width: 90vw;
+}
+
+.proficiency-choices {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.step-container {
+  flex: 1;
+  align-items: stretch;
+}
+
+.select-container {
+  align-items: stretch;
+  padding: 1em;
+}
+
+.display-selection-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.selection-img-container {
+  flex: 1;
+  padding: 20px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  align-items: stretch;
+  min-width: 140px;
+  background-repeat: no-repeat;
+    background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+}
+
+.display-selection {
+  flex: 2;
+  padding: 5px 20px 20px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  align-items: stretch;
+  width: fit-content;
+  background-repeat: no-repeat;
+    background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+}
+
+/* ability input */
+
+.ability-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: baseline;
+  overflow-x: auto;
+}
+
+.ability-table-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: baseline;
+  overflow-x: auto;
+}
+
+.abilities-display {
+  min-width: auto;
+  margin: 5px 20px 20px;
 }

@@ -35,8 +35,7 @@ class SelectProficiencies extends Component {
 
   render() {
     return (
-      <div>
-        <br />
+      <div className="proficiency-choices">
         <b>Choose: </b>{this.props.choose}
         <Select
           isMulti
@@ -49,7 +48,6 @@ class SelectProficiencies extends Component {
           value={this.state.values}
           onChange={values => this.setState({ values })}
         />
-        <br />
       </div>
     )
   }

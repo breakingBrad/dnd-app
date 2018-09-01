@@ -1,5 +1,5 @@
 .search-button {
-  background-color: rgb(41,82,102);
+  background-color: #3748AC;
   border-radius: 2px;
   border: 0;
   color: #fff;
@@ -15,5 +15,26 @@
 
 .search-button:focus {
   outline: none;
-  background-color: rgb(24,49,61);
+  background-color: #263278;
 }
+
+.auth-button {
+  background-color: #3748AC;
+  border-radius: 2px;
+  border: 0;
+  color: #fff;
+  text-align: center;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.auth-button:focus {
+  outline: none;
+  background-color: #263278;
+}
+
