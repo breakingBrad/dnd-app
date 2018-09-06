@@ -5,7 +5,7 @@ User = require('./../../models/user-model');
 module.exports = {
   userRegister: (req, res, next) => {
     console.log(`Adding new user: ${req.body.username}`);
-    const newUser = new User ({
+    const newUser = new User({
       _id: new mongoose.Types.ObjectId(),
       username: req.body.username,
       password: req.body.password,
@@ -17,37 +17,32 @@ module.exports = {
       })
       .catch(err => {
         if (err.code == 11000) {
-          let errorMsg = { error: `Username: '${req.body.username}' already exists. Please choose another username.`}
+          let errorMsg = { error: `Username: '${req.body.username}' already exists. Please choose another username.` }
           res.status(409).send(errorMsg);
           console.log(errorMsg);
           console.log(err);
         } else {
-        res.status(500).send({err});
-        console.log(err);
+          res.status(500).send({ err });
+          console.log(err);
         }
       });
   },
   userLogin: (req, res, next) => {
     console.log(req.body);
-    const username = req.body.username;
-    const password = req.body.password;
+    let { username, password } = req.body;
     let errorMsg = { error: `Incorrect Username or Password.` };
     console.log(`Attempting Login for username: ${username}`);
-    User.findOne({ username: username }, function(err, user) {
-      if (err) 
-      console.log(err);
-      res.status(500).send(errorMsg);
-      user.validatePassword(password, function(err, isMatch) {
-        if (err) {
-          console.log(err);
-          return res.status(500).send(errorMsg);
-        } else {
-          req.session.userId = user._id;
-          return user;
+    User.authenticate(username, password, function (error, user) {
+      if (error || !user) {
+        return res.status(400).send();
+      } else {
+        req.session.user = {
+          userId: user._id,
+          username: user.username,
+          user_img: user.user_img,
         }
-        console.log(`Password Match:`, isMatch);
-        console.log(`Session User Id: ${req.session.userId}`);
-      })
+        return res.status(200).send(req.session);
+      }
     })
   },
   getUser: (req, res, next) => {
