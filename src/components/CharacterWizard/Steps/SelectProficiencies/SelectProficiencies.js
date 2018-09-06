@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import { connect } from 'react-redux';
+import { proficienciesBuilder } from '../../../../ducks/reducers/reducer'
+
 
 class SelectProficiencies extends Component {
   constructor(props) {
@@ -8,16 +11,17 @@ class SelectProficiencies extends Component {
     this.state = {
       options: [],
       values: [],
+      choices: '',
     }
   }
 
   handleChange = (selectedOption) => {
     this.setState({
       selectedOption,
-      classId: selectedOption.value,
     });
     console.log(`Option selected:`, selectedOption);
   }
+
 
   componentDidMount(props) {
     let formattedOptions = this.props.options.map(function (obj) {
@@ -44,13 +48,18 @@ class SelectProficiencies extends Component {
               this.state.options : []
           }
           placeholder={'Select ...'}
-          closeMenuOnSelect={false}
+          closeMenuOnSelect={true}
           value={this.state.values}
           onChange={values => this.setState({ values })}
+          onBlur={() => this.props.proficienciesBuilder(this.state.values)}
         />
       </div>
     )
   }
 }
 
-export default SelectProficiencies;
+const mapStateToProps = (state) => ({
+  chosenProficiencies: state.values,
+});
+
+export default connect(mapStateToProps, { proficienciesBuilder})(SelectProficiencies);

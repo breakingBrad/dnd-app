@@ -1,13 +1,14 @@
 import React from 'react';
-import './Button.css';
+import Button from '@material-ui/core/Button';
 
-const Button = ({ className, type, children, ...rest }) => (
-    <button {...rest} 
-    type={type} 
-    className={`button ${ className || '' }`}
+const appButton = ({ className, variant, color, children, ...rest }) => (
+    <Button {...rest}
+    variant={variant}
+    color={color}
+    className={className}
     >
       {children}
-    </button>
+    </Button>
 );
 
-export default Button;
+export default appButton;

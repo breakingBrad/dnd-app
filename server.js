@@ -3,7 +3,6 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const helmet = require('helmet');
 const session = require('express-session');
 const routerHub = require('./server/routers/hub.router');
 
@@ -17,8 +16,9 @@ app.use(
     saveUninitialized: true,
   }),
 );
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json());
+
 
 mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true })
   .then(() => {
@@ -28,7 +28,7 @@ mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true })
     console.error.bind(console, 'MongoDB Connection Error');
   });
 
-  routerHub(app);
+routerHub(app);
 
 app.get('/', (req, res) => {
   res.send('Hello, I live to Serve.');

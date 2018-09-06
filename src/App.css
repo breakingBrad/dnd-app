@@ -1,14 +1,3 @@
-/* .App {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-} */
-
-.app-content {
-
-}
-
 /* auth */
 .auth-container {
   color: black;
@@ -51,19 +40,26 @@
 .auth-button-container {
   display: flex;
   justify-content: center;
-  justify-items: space-between;
+  justify-items: space-around;
+  margin: 10px;
+}
+
+.auth-button-container
+.MuiButton-containedPrimary-77 {
+  margin: 5px;
 }
 
 .auth-container h1 {
   font-size: 60px;
   margin: 10px;
-  
+  text-align: center;
 }
 
 .auth-input-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   margin-left: auto;
   margin-right: auto;
 }
@@ -80,6 +76,7 @@
 
 /* navbar */
 .nav-user-icon {
+  flex: 2;
   position: absolute;
   right: 0;
 }
@@ -87,7 +84,7 @@
 /* dashboard */
 
 .dashboard-container {
-  margin-top: 75px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -106,31 +103,33 @@
   margin: auto;
   justify-content: space-evenly;
   align-items: stretch;
+  width: auto;
+  height: min-content;
 
 }
 .expansion-summary {
   box-shadow: 0px 3px 5px -3px rgba(0,0,0,0.7);
 }
 
-
 .character-wizard-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5% 10% 5% 10%;
+  justify-content: space-around;
+  padding: 5%; 
   width: 90vw;
-}
-
-.proficiency-choices {
-  padding: 5px;
-  margin-top: 5px;
+  margin-top: 50px;
 }
 
 .step-container {
   flex: 1;
   align-items: stretch;
+  width: auto;
+}
+
+.instructions {
+  margin: 1em;
+  min-width: auto;
+  padding: auto;
 }
 
 .select-container {
@@ -146,47 +145,116 @@
 
 .selection-img-container {
   flex: 1;
+  justify-items: center;
   padding: 20px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
   align-items: stretch;
   min-width: 140px;
   background-repeat: no-repeat;
-    background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+}
+
+.selection-img-container h2 {
+  text-align: center;
 }
 
 .display-selection {
   flex: 2;
   padding: 5px 20px 20px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
   align-items: stretch;
   width: fit-content;
   background-repeat: no-repeat;
-    background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+}
+
+.display-selection-proficiences {
+  /* flex: 3; */
+  padding: 20px 20px 20px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  align-items: stretch;
+  min-height: fit-content;
+  background-repeat: no-repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+}
+
+.proficiency-choices {
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 50px;
 }
 
 /* ability input */
 
 .ability-input-container {
+  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: baseline;
   overflow-x: auto;
+  margin: 1em;
+  background-repeat: no-repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
 
 .ability-table-container {
+  flex: 2;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: baseline;
   overflow-x: auto;
+  margin: 1em;
+  min-width: auto;
+  background-repeat: no-repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
 
 .abilities-display {
   min-width: auto;
   margin: 5px 20px 20px;
+}
+
+.description-input-container {
+  flex: 1;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: baseline;
+  width: auto;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-repeat: no-repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
+}
+
+.description-col-1{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1em;
+  width: auto;
+}
+
+.description-col-2{
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  padding: 1em;
+  width: auto;
+}
+.save-changes-container {
+  display: flex;
+  margin: 1em;
+  justify-content: space-evenly;
+  align-items: center;
 }

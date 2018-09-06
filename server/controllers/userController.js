@@ -34,13 +34,14 @@ module.exports = {
     console.log(`Attempting Login for username: ${username}`);
     User.authenticate(username, password, function (error, user) {
       if (error || !user) {
-        return res.status(400).send();
+        return res.status(500).send(errorMsg);
       } else {
         req.session.user = {
           userId: user._id,
           username: user.username,
           user_img: user.user_img,
         }
+        console.log(`Success! ${username} is now logged in`)
         return res.status(200).send(req.session);
       }
     })

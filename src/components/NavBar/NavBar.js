@@ -11,7 +11,7 @@ class NavBar extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user: {}
+            user: {},
         }
     }
 
@@ -29,10 +29,6 @@ class NavBar extends Component {
                   color="inherit"
                 >
                 <AccountCircle />
-                <img
-                src="https://robohash.org/admin" 
-                alt="user-profile-icon" 
-                />
                 </IconButton> */}
             </Toolbar>
         </AppBar>

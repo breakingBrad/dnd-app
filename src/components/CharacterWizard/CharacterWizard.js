@@ -7,74 +7,75 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Description from './Steps/Description/Description';
+// import CheckboxList from '../CheckboxList/CheckboxList';
 
 
-  const CharacterWizard = () => {
-    return (
-      <div className="character-wizard-container">
-        <ExpansionPanel className="wizard-expansion-panel">
+const CharacterWizard = () => {
+  return (
+    <div className="character-wizard-container">
+
+      <ExpansionPanel className="wizard-expansion-panel">
         <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
           <Typography className="expansion-header"><b>Step One: Race</b></Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        <SelectRace />
+          <SelectRace />
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
       <ExpansionPanel className="wizard-expansion-panel">
-      <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
+        <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
           <Typography className="expansion-header"><b>Step Two: Class</b></Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        <SelectClass />
+          <SelectClass />
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
       <ExpansionPanel className="wizard-expansion-panel">
-      <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
+        <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
           <Typography className="expansion-header"><b>Step Three: Ability Scores</b></Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-        <SelectAbilityScores />
+          <SelectAbilityScores />
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
 
       <ExpansionPanel className="wizard-expansion-panel">
-      <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
-          <Typography className="expansion-header"><b>Step : Finalize</b></Typography>
+        <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
+          <Typography className="expansion-header"><b>Step Four: Details & Characteristics</b></Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-            {/* final step goes here */}
+          <Description />
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
       <ExpansionPanel className="wizard-expansion-panel" disabled={true}>
-      <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
-      <Typography className="expansion-header"><b>Select Feats and Spells <i>( Coming Soon! )</i></b></Typography>
+        <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
+          <Typography className="expansion-header"><b>Select Spells <i>( Coming Soon! )</i></b></Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
+          Coming Soon!
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
       <ExpansionPanel className="wizard-expansion-panel" disabled={true}>
-      <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
-          <Typography className="expansion-header"><b>Select Starting Equipment <i>( Coming Soon! )</i></b></Typography>
+        <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
+          <Typography className="expansion-header"><b>Select Equipment <i>( Coming Soon! )</i></b></Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
+          Coming Soon!
         </ExpansionPanelDetails>
       </ExpansionPanel>
-          {/* <br /> <br />
-          <br /> <br />
-          <SelectRace />
-          <br /> <br />
-          <SelectClass />
-          <br /> <br />
-          <SelectAbilityScores />
-          <br /> <br /> */}
-        </div>
-    )
-  }
+
+      {/* <CheckboxList/> */}
+
+
+    </div>
+  )
+}
 
 
 export default CharacterWizard;

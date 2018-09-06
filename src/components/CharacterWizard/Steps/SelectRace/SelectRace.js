@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import Paper from '@material-ui/core/Paper';
+import Button from '../../../Button/Button'
+import { connect } from 'react-redux';
+import { raceBuilder } from '../../../../ducks/reducers/reducer'
 
 class SelectRace extends Component {
   constructor(props) {
@@ -13,22 +16,23 @@ class SelectRace extends Component {
       raceId: '',
       race: [],
       loading: true,
-      
+      abilityBonuses: [],
     }
   }
 
-  handleChange = (selectedOption, e, id) => {
+  handleChange = (selectedOption) => {
     this.setState({
       selectedOption,
       raceId: selectedOption.value,
       loading: true, 
     })
-      axios.get(`http://localhost:4000/api/dnd/races/${selectedOption.value}`)
+    axios.get(`/api/dnd/races/${selectedOption.value}`)
         .then(response => {
           this.setState({
             loading: false,
             race: response.data,
             selectFocus: false,
+            abilityBonuses: response.data.ability_bonuses,
           })
         })
     }
@@ -37,9 +41,8 @@ class SelectRace extends Component {
     this.getOptions();
   }
 
-
   getOptions() {
-    axios.get(`http://localhost:4000/api/dnd/races`)
+    axios.get(`/api/dnd/races`)
       .then(response => {
         let options = response.data.sort();
         this.setState({
@@ -63,10 +66,9 @@ class SelectRace extends Component {
         placeholder={'Select Race...'}
         blurInputOnSelect={true}
         />
-        </div>
         <div className="display-selection-container">
         <Paper className="selection-img-container">
-          <img className="display-img" src={require(`../../../../images/races/${this.state.raceId ? this.state.raceId : 'placeholder'}.jpeg`)} alt="race img"/>
+          <img className="display-img" src={require(`../../../../images/race-images/${this.state.raceId ? this.state.raceId : 'placeholder'}.jpeg`)} alt="race img"/>
         <h2>{race.name}</h2>
         <p><strong>Speed: </strong>{race.speed}</p>
         <p><strong>Size: </strong>{race.size}</p>
@@ -92,9 +94,25 @@ class SelectRace extends Component {
         <p><strong>Traits: </strong>{race.traits ? race.traits.map((trait, i) => ((i ? ', ': '') + trait.name )) : null}</p>
         </Paper>
         </div>
+        <div className="save-changes-container">
+          <Button 
+            color="primary"
+            variant="contained"
+            onClick={() => this.props.raceBuilder(this.state.raceId, this.state.race, this.state.abilityBonuses)}
+          >
+          Save Selection
+          </Button>
+        </div>
+        </div>
       </div>
     );
   }
 }
 
-export default SelectRace;
+const mapStateToProps = (state) => ({
+  raceId: state.raceId,
+  race: state.race,
+  ability_bonuses: state.abilityBonuses,
+});
+
+export default connect(mapStateToProps, { raceBuilder })(SelectRace);

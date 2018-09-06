@@ -17,6 +17,7 @@
 .env.production.local
 .env
 /db/setup/classes
+/src/images/
 
 npm-debug.log*
 yarn-debug.log*
