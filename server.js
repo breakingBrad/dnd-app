@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const routerHub = require('./server/routers/hub.router');
+const MongoStore = require('connect-mongo')(session);
 
 const app = express();
 require('dotenv').config();
@@ -14,8 +15,12 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
-  }),
-);
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      touchAfter: 24 * 3600 
+    })
+  }));
+
 app.use(cors());
 app.use(bodyParser.json());
 

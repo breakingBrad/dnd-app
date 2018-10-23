@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '../Button/Button'
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { loginUser, registerUser } from '../../ducks/reducers/reducer'
+import { verifyAuth } from '../../ducks/reducers/reducer'
 
 class Auth extends Component {
   constructor() {
@@ -12,6 +12,7 @@ class Auth extends Component {
       username: '',
       password: '',
       user_img: '',
+      userId: '',
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -47,8 +48,14 @@ class Auth extends Component {
     }
     this.setState({ error: false });
     axios.post('/api/user/login', user)
-      .then(results => {
-        this.props.loginUser(results.data[0]);
+      .then(response => {
+        let user = response.data;
+        this.setState({
+          username: user.username,
+          user_img: user.user_img,
+          userId: user.userId
+        })
+        this.props.verifyAuth(true);
         this.props.history.push('./dashboard');
       })
       .catch(err => {
@@ -76,13 +83,16 @@ class Auth extends Component {
                 color="primary"
                 variant="contained"
                 onClick={() => this.login()}
-              >Login</Button>
+              >
+              Login
+              </Button>
               <Button
                 className="auth-button"
                 color="primary"
                 variant="contained"
                 onClick={() => this.register()}
-              >Register
+              >
+              Register
           </Button>
             </div>
           </div>
@@ -95,6 +105,7 @@ class Auth extends Component {
 const mapStateToProps = (state) => ({
   username: state.username,
   user_img: state.user_img,
+  userId: state.userId,
 })
 
-export default connect(mapStateToProps, { loginUser, registerUser })(Auth);
+export default connect(mapStateToProps, { verifyAuth })(Auth);

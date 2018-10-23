@@ -8,13 +8,13 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Description from './Steps/Description/Description';
-// import CheckboxList from '../CheckboxList/CheckboxList';
-
+import NavBar from '../NavBar/NavBar';
 
 const CharacterWizard = () => {
   return (
+    <div>
+    <NavBar/>
     <div className="character-wizard-container">
-
       <ExpansionPanel className="wizard-expansion-panel">
         <ExpansionPanelSummary className="expansion-summary" expandIcon={<ExpandMoreIcon />}>
           <Typography className="expansion-header"><b>Step One: Race</b></Typography>
@@ -70,9 +70,8 @@ const CharacterWizard = () => {
         </ExpansionPanelDetails>
       </ExpansionPanel>
 
-      {/* <CheckboxList/> */}
 
-
+    </div>
     </div>
   )
 }

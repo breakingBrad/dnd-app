@@ -6,5 +6,6 @@ userRouter.post('/api/user/register', userController.userRegister);
 userRouter.post('/api/user/login', userController.userLogin);
 userRouter.get('/api/user/info', userController.getUser);
 userRouter.post('/api/user/logout', userController.userLogout);
+userRouter.get('/api/user/auth', userController.verifyAuth);
 
 module.exports = userRouter;

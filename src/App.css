@@ -49,6 +49,41 @@
   margin: 5px;
 }
 
+.MuiButton-root-90 {
+  color: rgb(255, 255, 255);
+}
+
+.nav-link{ 
+  text-decoration: none;
+  color: white;
+  text-decoration-color: #f9f9f9;
+  margin-left: 30px;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-bar,
+.title,
+.nav-link {
+  flex: 1;
+}
+
+/* .nav-bar,
+.nav-profile-picture {
+  flex: 2;
+} */
+
+.nav-profile-picture {
+  background-color: #f9f9fd;
+  margin-bottom: 0;
+  margin: 15px;
+  right: 0;
+}
+
 .auth-container h1 {
   font-size: 60px;
   margin: 10px;
@@ -84,12 +119,19 @@
 /* dashboard */
 
 .dashboard-container {
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 100px;
+  padding-top: 100px;
+  width: 85%;
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: auto;
+  padding-bottom: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background-color: #ffff;
 }
 
 /* character wizard */

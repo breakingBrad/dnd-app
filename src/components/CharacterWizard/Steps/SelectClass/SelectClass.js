@@ -8,8 +8,6 @@ import { connect } from 'react-redux';
 import { classBuilder } from '../../../../ducks/reducers/reducer'
 import Button from '../../../Button/Button'
 
-
-
 class SelectClass extends Component {
   constructor(props) {
     super(props);

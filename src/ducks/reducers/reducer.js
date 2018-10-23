@@ -1,7 +1,5 @@
 const initialState = {
-  username: '',
-  user_img: '',
-
+  loggedIn: false,
   raceId: '',
   race: [],
   abilityBonuses: [],
@@ -23,7 +21,6 @@ const initialState = {
   weight: '',
   age: '',
   hair: '',
-
 }
 
 const RACE = 'RACE'
@@ -31,24 +28,14 @@ const CLASS = 'CLASS'
 const PROFICIENCIES = 'PROFICIENCIES'
 const ABILITIES = 'ABILITIES'
 const DESCRIPTION = 'DESCRIPTION'
+const CANCEL = 'CANCEL'
 
-const REGISTER = 'REGISTER'
-const LOGIN = 'LOGIN'
-const GET_USER_INFO = 'GET_USER_INFO'
-const LOGOUT = 'LOGOUT'
+const VERIFIED_USER = 'VERIFIED_USER'
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-
-    case REGISTER:
-      return Object.assign({}, state, { username: action.payload.username, user_img: action.payload.user_img, })
-    case LOGIN:
-      return Object.assign({}, state, { username: action.payload.username, user_img: action.payload.user_img, })
-    case GET_USER_INFO:
-      return Object.assign({}, state, { username: action.payload.username, user_img: action.payload.user_img, })
-    case LOGOUT:
-      return Object.assign({}, state, { username: action.payload.username, user_img: action.payload.user_img, })
-
+    case VERIFIED_USER:
+      return Object.assign({}, state, {loggedIn: action.payload.loggedIn})
     case RACE:
       return Object.assign({}, state,
         {
@@ -89,49 +76,35 @@ export default function reducer(state = initialState, action) {
           weight: action.payload.weight,
           age: action.payload.age,
           hair: action.payload.hair,
-
+        })
+    case CANCEL:
+      return Object.assign({}, state,
+        {
+          raceId: action.payload.raceId,
+          race: action.payload.race,
+          abilityBonuses: action.payload.abilityBonuses,
+          classId: action.payload.classId,
+          dndClass: action.payload.dndClass,
+          proficiencyChoices: action.payload.proficiencyChoices,
+          classLevel: action.payload.classLevel,
+          level: action.payload.level,
+          chosenProficiencies: action.payload.chosenProficiencies,
+          str: action.payload.str,
+          dex: action.payload.dex,
+          con: action.payload.con,
+          int: action.payload.int,
+          wis: action.payload.wis,
+          cha: action.payload.cha,
+          name: action.payload.name,
+          gender: action.payload.gender,
+          height: action.payload.height,
+          weight: action.payload.weight,
+          age: action.payload.age,
+          hair: action.payload.hair,
         })
     default: return state
   }
 }
-
-export function loginUser(username, user_img) {
-  return {
-    type: LOGIN,
-    payload: {
-      username, 
-      user_img
-    }
-  }
-}
-
-export function registerUser(username, user_img) {
-  return {
-    type: REGISTER,
-    payload: {
-      username, 
-      user_img
-    }
-  }
-}
-
-export function getUser(username, user_img) {
-  return {
-    type: GET_USER_INFO,
-    payload: {
-      username, 
-      user_img
-    }
-  }
-}
-
-export function logOut() {
-  return {
-    type: LOGOUT,
-    payload: initialState
-  }
-}
-
 
 export function raceBuilder(raceId, race, abilityBonuses) {
   return {
@@ -190,6 +163,42 @@ export function descriptionBuilder(name, gender, height, weight, age, hair) {
       weight,
       age,
       hair,
+    }
+  }
+}
+
+export const verifyAuth = (loggedIn) => {
+	return {
+		type: 'VERIFIED_USER',
+		payload: {loggedIn},
+	}
+}
+
+export function cancel(raceId, race, abilityBonuses, classId, dndClass, proficiencyChoices, classLevel, level, str, dex, con, int, wis, cha, chosenProficiencies, name, gender, height, weight, age, hair) {
+  return {
+    type: CANCEL,
+    payload: {
+      raceId: '',
+      race: [],
+      abilityBonuses: [],
+      classId: '',
+      dndClass: [],
+      proficiencyChoices: [],
+      classLevel: {},
+      level: 1,
+      chosenProficiencies: [],
+      str: 0,
+      dex: 0,
+      con: 0,
+      int: 0,
+      wis: 0,
+      cha: 0,
+      name: '',
+      gender: '',
+      height: '',
+      weight: '',
+      age: '',
+      hair: '',
     }
   }
 }
