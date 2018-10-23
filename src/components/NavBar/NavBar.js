@@ -33,15 +33,22 @@ class NavBar extends Component {
             userId: user.userId,
           })
         } else {
-          res.redirect
+          this.props.verifyAuth(false);
         }
       })
     }
   }
 
   logOut() {
-    axios.post('/api/user/logout').then(() => {
-      this.props.logOut()
+    axios.post('/api/user/logout').then(res => {
+      console.log(res.data.message);
+      this.props.verifyAuth(false);
+      this.setState({
+        username: '',
+        user_img: '',
+        userId: '',
+      })
+      this.props.history.push('/');
     })
   }
 
@@ -68,17 +75,16 @@ class NavBar extends Component {
                 </Button>
                 <br/>
               </Link>
-              <Link to="/">
                 <Button
                   className="nav-Button"
                   color="primary"
                   variant="contained"
+                  onClick={() => this.logOut()}
                 >
                   <Typography variant="title" color="inherit">
                     Logout
                   </Typography>
                 </Button>
-              </Link>
               <Avatar alt={this.state.username} src={this.state.user_img} className="nav-profile-picture" />
             </Toolbar>
           </AppBar>

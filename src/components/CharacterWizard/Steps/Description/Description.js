@@ -48,7 +48,6 @@ class Description extends Component {
   
   addCharacter() {
     const newCharacter = {
-      userId: '5b909f8898b2207e8467ceed',
       raceId: this.props.raceId,
       race: this.props.race,
       abilityBonuses: this.props.abilityBonuses,

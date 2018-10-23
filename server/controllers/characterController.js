@@ -22,7 +22,7 @@ module.exports = {
     console.log(req.body);
     const newCharacter = new Character({
       _id: new mongoose.Types.ObjectId(),
-      ownerUserId: req.body.userId,
+      ownerUserId: req.session.user.userId,
       raceId: req.body.raceId,
       race: req.body.race,
       abilityBonuses: req.body.abilityBonuses,
