@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const mongoose = require('mongoose'),
-User = require('./../../models/user-model');
+User = require('../../models/user-model');
 
 module.exports = {
   userRegister: (req, res, next) => {

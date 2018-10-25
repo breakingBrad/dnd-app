@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const mongoose = require('mongoose'),
-  Character = require('./../../models/character-model');
+  Character = require('../../models/character-model');
 
 module.exports = {
   listCharacters: (req, res, next) => {

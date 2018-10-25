@@ -1,6 +1,6 @@
 const express = require('express');
 const characterRouter = express.Router();
-const characterController = require('../controllers/characterController');
+const characterController = require('../controllers/character.controller');
 
 characterRouter.get('/list', characterController.listCharacters)
 // characterRouter.get('/:id', characterController.getCharacter)

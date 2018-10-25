@@ -1,6 +1,6 @@
 const express = require('express');
 const dndRouter = express.Router();
-const dndController = require('../controllers/dndController');
+const dndController = require('../controllers/dnd.controller');
 
 dndRouter.get('/races', dndController.listRaces);
 dndRouter.get('/races/:raceId', dndController.getRace);
