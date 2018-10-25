@@ -2,9 +2,9 @@ const express = require('express');
 const characterRouter = express.Router();
 const characterController = require('../controllers/characterController');
 
-// characterRouter.get('/api/characters', characterController.listCharacters)
-// characterRouter.get('api/character/:id', characterController.getCharacter)
-characterRouter.post('/api/character/create', characterController.createCharacter)
-// characterRouter.put('/api/character/:id', characterController.editCharacter)
+characterRouter.get('/list', characterController.listCharacters)
+// characterRouter.get('/:id', characterController.getCharacter)
+characterRouter.post('/create', characterController.createCharacter)
+// characterRouter.put('/:id', characterController.editCharacter)
 
 module.exports = characterRouter;
