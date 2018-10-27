@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography'
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { verifyAuth } from '../../ducks/reducers/reducer'
-import Button from '../Button/Button'
 import { Link, withRouter } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
-
 
 
 class NavBar extends Component {
@@ -18,10 +19,11 @@ class NavBar extends Component {
       username: '',
       user_img: '',
       userId: '',
+      anchorEl: null,
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.location.pathname !== '/') {
       axios.get('/api/user/auth').then(res => {
         if (res.status === 200) {
@@ -39,7 +41,11 @@ class NavBar extends Component {
     }
   }
 
-  logOut() {
+  componentDidMount() {
+    this.setState({ anchorEl: null });
+  }
+
+  logOut = () => {
     axios.post('/api/user/logout').then(res => {
       console.log(res.data.message);
       this.props.verifyAuth(false);
@@ -52,7 +58,17 @@ class NavBar extends Component {
     })
   }
 
+  handleMenu = e => {
+    this.setState({ anchorEl: e.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
+    const { anchorEl } = this.state;
+    const open = Boolean(anchorEl);
     if (this.state.username !== '') {
       return (
         <div>
@@ -63,29 +79,34 @@ class NavBar extends Component {
                 Hero Roller
               </Typography>
               </Link>
-              <Link to="/user-info">
-                <Button
-                  className="nav-Button"
-                  color="primary"
-                  variant="contained"
+              <IconButton
+                className="nav-profile-button"
+                aria-owns={open ? 'menu-appbar' : null}
+                aria-haspopup="true"
+                onClick={this.handleMenu}
+                color="inherit"
                 >
-                  <Typography variant="title" color="inherit">
-                    User Info
-                  </Typography>
-                </Button>
-                <br/>
-              </Link>
-                <Button
-                  className="nav-Button"
-                  color="primary"
-                  variant="contained"
-                  onClick={() => this.logOut()}
-                >
-                  <Typography variant="title" color="inherit">
-                    Logout
-                  </Typography>
-                </Button>
               <Avatar alt={this.state.username} src={this.state.user_img} className="nav-profile-picture" />
+              </IconButton>
+              <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                    placement: 'bottom',
+                  }}
+                  transformOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                    placement: 'bottom',
+                  }}
+                  open={open}
+                  onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleClose} disabled={true}><Link className="menu-link" to="/user-profile">My Profile</Link></MenuItem>
+                  <MenuItem onClick={this.handleClose && this.logOut}>Log out</MenuItem>
+                </Menu>
             </Toolbar>
           </AppBar>
         </div>

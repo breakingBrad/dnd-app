@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
 
 module.exports = {
   listCharacters: (req, res, next) => {
-    const userId = req.session.userId;
+    const userId = req.session.user.userId;
     Character.find({ 'ownerUserId': userId })
       .then(characters => {
         res.status(200).json(characters)

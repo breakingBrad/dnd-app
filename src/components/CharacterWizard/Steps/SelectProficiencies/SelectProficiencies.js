@@ -12,14 +12,24 @@ class SelectProficiencies extends Component {
       options: [],
       values: [],
       choices: '',
+      chosenProficienciesProps: props.chosenProficienciesProps,
     }
   }
 
-  handleChange = (selectedOption) => {
-    this.setState({
-      selectedOption,
-    });
-    console.log(`Option selected:`, selectedOption);
+  handleChange = (values) => {
+    this.setState({ values });
+    this.props.proficienciesBuilder(this.state.values);
+  }
+
+  componentWillMount() {
+    if (this.props.chosenProficienciesProps) {
+      this.setState({
+        options: this.props.options,
+        values: [],
+        choices: this.props.choose,
+        chosenProficiencesProps: this.props.chosenProficienciesProps,
+      })
+    }
   }
 
 
@@ -30,12 +40,22 @@ class SelectProficiencies extends Component {
         value: obj.url.substr(obj.url.lastIndexOf('/') + 1),
       }
     })
-    this.setState({
-      options: formattedOptions.sort(),
-      choices: this.props.choose,
-      values: [],
-    })
+    if (!this.props.chosenProficienciesProps) {
+      this.setState({
+        options: formattedOptions.sort(),
+        choices: this.props.choose,
+        values: [],
+      })
+    } else {
+      const values = this.props.chosenProficienciesProps;
+      this.setState({
+        options: formattedOptions.sort(),
+        choices: this.props.choose,
+        values: values,
+      })
+    }
   }
+  
 
   render() {
     return (
@@ -50,7 +70,7 @@ class SelectProficiencies extends Component {
           placeholder={'Select ...'}
           closeMenuOnSelect={true}
           value={this.state.values}
-          onChange={values => this.setState({ values })}
+          onChange={values => this.handleChange(values)}
           onBlur={() => this.props.proficienciesBuilder(this.state.values)}
         />
       </div>
@@ -62,4 +82,4 @@ const mapStateToProps = (state) => ({
   chosenProficiencies: state.values,
 });
 
-export default connect(mapStateToProps, { proficienciesBuilder})(SelectProficiencies);
+export default connect(mapStateToProps, { proficienciesBuilder })(SelectProficiencies);
