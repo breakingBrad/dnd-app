@@ -1,6 +1,6 @@
 const axios = require('axios');
 const _ = require('lodash');
-const data = require('./dataController')
+const data = require('./data.controller')
 
 module.exports = {
   listRaces: (req, res, next) => {

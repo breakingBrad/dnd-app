@@ -3,8 +3,9 @@ import NavBar from '../NavBar/NavBar';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { cancel } from '../../ducks/reducers/reducer'
+import { verifyAuth, cancel } from '../../ducks/reducers/reducer'
 import Button from '../Button/Button'
+
 
 class Dashboard extends Component {
   constructor() {
@@ -34,6 +35,17 @@ class Dashboard extends Component {
     }
   }
 
+  componentWillMount() {
+      axios.get('/api/user/auth').then(res => {
+        if (res.status === 200) {
+          this.props.verifyAuth(true);
+        } else {
+          this.props.verifyAuth(false);
+          this.props.historyd.push('/');
+        }
+      })
+  }
+
   fetchCharacters() {
 
   }
@@ -42,17 +54,18 @@ class Dashboard extends Component {
     return (
       <div>
       <NavBar/>
-      <div className="dashboard-container">
-          <Link className="nav-link" to="/character-wizard">
-            <Button
-            className="dash-button"
-            color="primary"
-            variant="contained"
-            >
-              + New Character
-            </Button>
-            </Link>
-        </div>
+        <div className="dashboard-container">
+            <Link className="dash-link" to="/character-wizard/0">
+              <Button
+              className="dash-button"
+              color="primary"
+              variant="contained"
+              >
+                + New Character
+              </Button>
+              </Link>
+              {/* <h1>My Characters</h1> */}
+          </div>
       </div>
     );
   }
@@ -82,4 +95,4 @@ const mapStateToProps = (state) => ({
   hair: state.hair,
 })
 
-export default connect(mapStateToProps, { cancel })(Dashboard);
+export default connect(mapStateToProps, { verifyAuth, cancel })(Dashboard);

@@ -56,7 +56,7 @@ class Auth extends Component {
           userId: user.userId
         })
         this.props.verifyAuth(true);
-        this.props.history.push('./dashboard');
+        this.props.history.push('/dashboard');
       })
       .catch(err => {
         this.setState({ error: true })

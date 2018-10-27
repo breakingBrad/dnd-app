@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
@@ -10,7 +11,6 @@ class Description extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: props.userId,
       raceId: props.raceId,
       race: props.race,
       abilityBonuses: props.abilityBonuses,
@@ -37,8 +37,35 @@ class Description extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.name) {
+      this.setState({
+        name: this.props.name,
+        gender: this.props.gender,
+        height: this.props.height,
+        weight: this.props.weight,
+        age: this.props.age,
+        hair: this.props.hair,
+      });
+    }
+  }
+
+  componentWillMount() {
+    if (this.props.name) {
+      this.setState({
+        name: this.props.name,
+        gender: this.props.gender,
+        height: this.props.height,
+        weight: this.props.weight,
+        age: this.props.age,
+        hair: this.props.hair,
+      });
+    }
+  }
+
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+    this.props.descriptionBuilder(this.state.name, this.state.gender, this.state.height, this.state.weight, this.state.age, this.state.hair);
   }
 
   handleSubmit() {
@@ -46,9 +73,8 @@ class Description extends Component {
     this.addCharacter();
   }
   
-  addCharacter() {
+  addCharacter = () => {
     const newCharacter = {
-      userId: '5b909f8898b2207e8467ceed',
       raceId: this.props.raceId,
       race: this.props.race,
       abilityBonuses: this.props.abilityBonuses,
@@ -64,12 +90,12 @@ class Description extends Component {
       int: this.props.int,
       wis: this.props.wis,
       cha: this.props.cha,
-      name: this.props.name,
-      gender: this.props.gender,
-      height: this.props.height,
-      weight: this.props.weight,
-      age: this.props.age,
-      hair: this.props.hair,
+      name: this.state.name,
+      gender: this.state.gender,
+      height: this.state.height,
+      weight: this.state.weight,
+      age: this.state.age,
+      hair: this.state.hair,
     }
     console.log(newCharacter);
     axios.post(`/api/character/create`, newCharacter)
@@ -82,14 +108,26 @@ class Description extends Component {
   }
 
   render() {
+    const saveButton = 
+      this.state.name ? (
+      <span className="wizard-nav-next"><Button color="primary" variant="contained" raised component={Link} to="/character-wizard/4" onClick={() => this.handleSubmit()}>Save Character</Button></span>
+      ) : null;
     return (
       <div className="step-container">
+        <div className="wizard-nav-container">
+          <span className="wizard-nav-prev"><Button variant="contained" raised component={Link} to="/character-wizard/3">&larr;</Button></span>
+        </div>
+        <h1>Final Step: Details & Characteristics</h1>
+        <p className="instructions">
+          Choose and input a name for your character, along with any other details you would like. When you've finished entering your details, you can finalize and save your character.
+        </p>
         <div className="select-container">
           <Paper className="description-input-container">
           <div className="description-col-1">
             <TextField className="description-input"
               name="name" label="Character Name" value={this.state.name}
               type="text"
+              required={true}
               onChange={this.handleChange} InputLabelProps={{ shrink: true, }} margin="normal"
             />
             <TextField className="description-input"
@@ -123,14 +161,7 @@ class Description extends Component {
           </Paper>
         </div>
         <div className="save-changes-container">
-          <Button 
-            className="save-button"
-            color="primary"
-            variant="contained"
-            onClick={e => this.handleSubmit()}
-          >
-          Save New Character
-          </Button>
+          {saveButton}
         </div>
       </div>
     );
@@ -159,7 +190,6 @@ const mapStateToProps = (state) => ({
   weight: state.weight,
   age: state.age,
   hair: state.hair,
-  userId: state.userId,
 })
 
 export default connect(mapStateToProps, { descriptionBuilder }) (Description);

@@ -1,52 +1,52 @@
 const express = require('express');
 const dndRouter = express.Router();
-const dndController = require('../controllers/dndController');
+const dndController = require('../controllers/dnd.controller');
 
-dndRouter.get('/api/dnd/races', dndController.listRaces);
-dndRouter.get('/api/dnd/races/:raceId', dndController.getRace);
-dndRouter.get('/api/dnd/subraces', dndController.listSubraces);
-dndRouter.get('/api/dnd/subraces/:subraceId', dndController.getSubrace);
+dndRouter.get('/races', dndController.listRaces);
+dndRouter.get('/races/:raceId', dndController.getRace);
+dndRouter.get('/subraces', dndController.listSubraces);
+dndRouter.get('/subraces/:subraceId', dndController.getSubrace);
 // class
-dndRouter.get('/api/dnd/classes', dndController.listClasses);
-dndRouter.get('/api/dnd/classes/:classId', dndController.getClass);
-dndRouter.get('/api/dnd/classes/:className/levels', dndController.listClassLevels);
-dndRouter.get('/api/dnd/classes/:className/level/:level', dndController.getClassLevel);
-dndRouter.get('/api/dnd/classes/spellcasting/:classId', dndController.getClassSpellcasting);
-dndRouter.get('/api/dnd/subclasses', dndController.listSubclasses);
-dndRouter.get('/api/dnd/subclasses/:subclassId', dndController.getSubclass);
-dndRouter.get('/api/dnd/classes/startingequipment/:classId', dndController.getClassStartingEquipment);
+dndRouter.get('/classes', dndController.listClasses);
+dndRouter.get('/classes/:classId', dndController.getClass);
+dndRouter.get('/classes/:className/levels', dndController.listClassLevels);
+dndRouter.get('/classes/:className/level/:level', dndController.getClassLevel);
+dndRouter.get('/classes/spellcasting/:classId', dndController.getClassSpellcasting);
+dndRouter.get('/subclasses', dndController.listSubclasses);
+dndRouter.get('/subclasses/:subclassId', dndController.getSubclass);
+dndRouter.get('/classes/startingequipment/:classId', dndController.getClassStartingEquipment);
 // proficiencies
-dndRouter.get('/api/dnd/proficiencies', dndController.listProficiencies);
-dndRouter.get('/api/dnd/proficiencies/:proficiencyId', dndController.getProficiency);
+dndRouter.get('/proficiencies', dndController.listProficiencies);
+dndRouter.get('/proficiencies/:proficiencyId', dndController.getProficiency);
 // skills
-dndRouter.get('/api/dnd/skills', dndController.listSkills);
-dndRouter.get('/api/dnd/skills/:skillId', dndController.getSkill);
+dndRouter.get('/skills', dndController.listSkills);
+dndRouter.get('/skills/:skillId', dndController.getSkill);
 // spells
-dndRouter.get('/api/dnd/spells', dndController.listSpells);
-dndRouter.get('/api/dnd/spells/:spellId', dndController.getSpell);
+dndRouter.get('/spells', dndController.listSpells);
+dndRouter.get('/spells/:spellId', dndController.getSpell);
 // feats
-dndRouter.get('/api/dnd/features', dndController.listFeatures);
-dndRouter.get('/api/dnd/features/:featureId', dndController.getFeature);
+dndRouter.get('/features', dndController.listFeatures);
+dndRouter.get('/features/:featureId', dndController.getFeature);
 // ability-scores
-dndRouter.get('/api/dnd/ability-scores', dndController.listAbilityScores);
-dndRouter.get('/api/dnd/ability-scores/:abilityScoreId', dndController.getAbilityScore);
+dndRouter.get('/ability-scores', dndController.listAbilityScores);
+dndRouter.get('/ability-scores/:abilityScoreId', dndController.getAbilityScore);
 // languages
-dndRouter.get('/api/dnd/languages', dndController.listLanguages);
-dndRouter.get('/api/dnd/languages/:languageId', dndController.getLanguage);
+dndRouter.get('/languages', dndController.listLanguages);
+dndRouter.get('/languages/:languageId', dndController.getLanguage);
 // equipment
-dndRouter.get('/api/dnd/equipment', dndController.listEquipment);
-dndRouter.get('/api/dnd/equipment/:equipmentId', dndController.getEquipment);
+dndRouter.get('/equipment', dndController.listEquipment);
+dndRouter.get('/equipment/:equipmentId', dndController.getEquipment);
 // conditions
-dndRouter.get('/api/dnd/conditions', dndController.listConditions);
-dndRouter.get('/api/dnd/conditions/:conditionId', dndController.getCondition);
+dndRouter.get('/conditions', dndController.listConditions);
+dndRouter.get('/conditions/:conditionId', dndController.getCondition);
 // damage-types
-dndRouter.get('/api/dnd/damage-types', dndController.listDamageTypes);
-dndRouter.get('/api/dnd/damage-types/:damageTypeId', dndController.getDamageType);
+dndRouter.get('/damage-types', dndController.listDamageTypes);
+dndRouter.get('/damage-types/:damageTypeId', dndController.getDamageType);
 // magic-schools
-dndRouter.get('/api/dnd/magic-schools', dndController.listMagicSchools);
-dndRouter.get('/api/dnd/magic-schools/:magicSchoolId', dndController.getMagicSchool);
+dndRouter.get('/magic-schools', dndController.listMagicSchools);
+dndRouter.get('/magic-schools/:magicSchoolId', dndController.getMagicSchool);
 // monsters
-dndRouter.get('/api/dnd/monsters', dndController.listMonsters);
-dndRouter.get('/api/dnd/monsters/:monsterId', dndController.getMonster);
+dndRouter.get('/monsters', dndController.listMonsters);
+dndRouter.get('/monsters/:monsterId', dndController.getMonster);
 
 module.exports = dndRouter;

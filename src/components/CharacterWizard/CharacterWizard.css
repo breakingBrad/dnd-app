@@ -1,0 +1,33 @@
+.wizard-routes-container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.poll-buttons {
+  width: 80vw;
+  height: 100%;
+  margin-top: 50px;
+  background-color: #ffffffd9;
+  border-radius: 15px;
+}
+
+.next {
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+  height: 40px;
+  width: 90%;
+  margin: auto;
+}
+
+.next button {
+  background-color: #ffcf1f;
+  font-size: 20px;
+}
+
+.next button:hover {
+  background-color: #e2b40b;
+}

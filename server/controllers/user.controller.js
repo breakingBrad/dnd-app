@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const mongoose = require('mongoose'),
-User = require('./../../models/user-model');
+User = require('../../models/user-model');
 
 module.exports = {
   userRegister: (req, res, next) => {
@@ -65,9 +65,11 @@ module.exports = {
     });
   },
   userLogout: (req, res, next) => {
-    console.log(`Logging out user: ${username}`);
-    req.session.destroy();
-    res.status(200).send({ message: 'You have successfully logged out.'})
+    if (req.session.user) {
+      console.log(`Logging out user: ${req.session.user.username}`);
+      req.session.destroy();
+      res.status(200).send({ message: 'You have successfully logged out.'})
+    }
   },
   verifyAuth: (req, res, next) => {
     if (req.session.user) {

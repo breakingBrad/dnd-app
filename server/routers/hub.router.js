@@ -3,9 +3,9 @@ const dndRouter = require('./dnd.router');
 const characterRouter = require('./character.router');
 
 function routerHub(app) {
-  app.use(userRouter);
-  app.use(dndRouter);
-  app.use(characterRouter);
+  app.use('/api/user', userRouter);
+  app.use('/api/dnd', dndRouter);
+  app.use('/api/character', characterRouter);
 }
 
 module.exports = routerHub;

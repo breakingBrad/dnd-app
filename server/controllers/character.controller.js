@@ -1,10 +1,10 @@
 const _ = require('lodash');
 const mongoose = require('mongoose'),
-  Character = require('./../../models/character-model');
+  Character = require('../../models/character-model');
 
 module.exports = {
   listCharacters: (req, res, next) => {
-    const userId = req.session.userId;
+    const userId = req.session.user.userId;
     Character.find({ 'ownerUserId': userId })
       .then(characters => {
         res.status(200).json(characters)
@@ -22,7 +22,7 @@ module.exports = {
     console.log(req.body);
     const newCharacter = new Character({
       _id: new mongoose.Types.ObjectId(),
-      ownerUserId: req.body.userId,
+      ownerUserId: req.session.user.userId,
       raceId: req.body.raceId,
       race: req.body.race,
       abilityBonuses: req.body.abilityBonuses,

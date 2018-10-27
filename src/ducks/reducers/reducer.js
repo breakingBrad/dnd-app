@@ -9,12 +9,12 @@ const initialState = {
   classLevel: {},
   level: 1,
   chosenProficiencies: [],
-  str: 0,
-  dex: 0,
-  con: 0,
-  int: 0,
-  wis: 0,
-  cha: 0,
+  str: '',
+  dex: '',
+  con: '',
+  int: '',
+  wis: '',
+  cha: '',
   name: '',
   gender: '',
   height: '',
@@ -23,14 +23,13 @@ const initialState = {
   hair: '',
 }
 
-const RACE = 'RACE'
-const CLASS = 'CLASS'
-const PROFICIENCIES = 'PROFICIENCIES'
-const ABILITIES = 'ABILITIES'
-const DESCRIPTION = 'DESCRIPTION'
-const CANCEL = 'CANCEL'
-
-const VERIFIED_USER = 'VERIFIED_USER'
+const RACE = 'RACE';
+const CLASS = 'CLASS';
+const PROFICIENCIES = 'PROFICIENCIES';
+const ABILITIES = 'ABILITIES';
+const DESCRIPTION = 'DESCRIPTION';
+const CANCEL = 'CANCEL';
+const VERIFIED_USER = 'VERIFIED_USER';
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -106,7 +105,7 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export function raceBuilder(raceId, race, abilityBonuses) {
+export const raceBuilder = (raceId, race, abilityBonuses) => {
   return {
     type: RACE,
     payload: {
@@ -117,7 +116,7 @@ export function raceBuilder(raceId, race, abilityBonuses) {
   }
 }
 
-export function classBuilder(classId, dndClass, proficiencyChoices, classLevel, level) {
+export const classBuilder = (classId, dndClass, proficiencyChoices, classLevel, level) => {
   return {
     type: CLASS,
     payload: {
@@ -130,7 +129,7 @@ export function classBuilder(classId, dndClass, proficiencyChoices, classLevel, 
   }
 }
 
-export function abilitiesBuilder(str, dex, con, int, wis, cha) {
+export const abilitiesBuilder = (str, dex, con, int, wis, cha) => {
   return {
     type: ABILITIES,
     payload: {
@@ -144,7 +143,7 @@ export function abilitiesBuilder(str, dex, con, int, wis, cha) {
   }
 }
 
-export function proficienciesBuilder(chosenProficiencies) {
+export const proficienciesBuilder = (chosenProficiencies) => {
   return {
     type: PROFICIENCIES,
     payload: {
@@ -153,7 +152,7 @@ export function proficienciesBuilder(chosenProficiencies) {
   }
 }
 
-export function descriptionBuilder(name, gender, height, weight, age, hair) {
+export const descriptionBuilder = (name, gender, height, weight, age, hair) => {
   return {
     type: DESCRIPTION,
     payload: {
@@ -174,7 +173,7 @@ export const verifyAuth = (loggedIn) => {
 	}
 }
 
-export function cancel(raceId, race, abilityBonuses, classId, dndClass, proficiencyChoices, classLevel, level, str, dex, con, int, wis, cha, chosenProficiencies, name, gender, height, weight, age, hair) {
+export const cancel = (raceId, race, abilityBonuses, classId, dndClass, proficiencyChoices, classLevel, level, str, dex, con, int, wis, cha, chosenProficiencies, name, gender, height, weight, age, hair) => {
   return {
     type: CANCEL,
     payload: {
