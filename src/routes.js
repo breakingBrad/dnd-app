@@ -4,6 +4,7 @@ import Auth from './components/Auth/Auth';
 import Dashboard from './components/Dashboard/Dashboard';
 import CharacterWizard from './components/CharacterWizard/CharacterWizard';
 import Profile from './components/Profile/Profile';
+import CharacterView from './components/Character/CharacterView';
 
 export default (
   <Switch>
@@ -11,5 +12,6 @@ export default (
     <Route path="/character-wizard" component={ CharacterWizard } />
     <Route path="/dashboard" component={ Dashboard } />
     <Route path="/user-profile" component={ Profile } />
+    <Route path="/character/:id" component={ CharacterView } />
   </Switch>
 )

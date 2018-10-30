@@ -135,7 +135,7 @@ class SelectClass extends Component {
           />
           <div className="display-selection-container">
             <Paper className="selection-img-container">
-              <img className="display-img" src={require(`../../../../images/class-images/${this.state.classId ? this.state.classId : 'placeholder'}.jpeg`)} alt="race img" />
+              <img className="display-img" src={require(`../../../../images/class-images/${this.state.classId ? this.state.classId : 'placeholder'}.jpeg`)} alt="class img" />
               <h2>{dndClass.name}</h2>
               <p><strong>Hit Die: </strong>d{dndClass.hit_die}</p>
               <p><strong>Saves: </strong>{this.state.dndClass.saving_throws ? this.state.dndClass.saving_throws.map((save, i) => ((i ? ', ' : '') + _.capitalize(save.name))) : null}</p>
@@ -150,16 +150,6 @@ class SelectClass extends Component {
               {proficiencySelect}
             </Paper>
         </div>
-        {/* <div className="save-changes-container">
-          <Button 
-            className="save-button"
-            color="primary"
-            variant="contained"
-            onClick={() => this.props.classBuilder(this.state.classId, this.state.dndClass, this.state.proficiencyChoices, this.state.classLevel, this.state.level)}
-          >
-          Save Selection
-          </Button> 
-    </div> */}
       </div>
     );
   }

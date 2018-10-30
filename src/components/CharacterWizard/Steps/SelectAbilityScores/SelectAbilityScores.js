@@ -10,8 +10,6 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { abilitiesBuilder } from '../../../../ducks/reducers/reducer'
 import Button from '../../../Button/Button'
-
-
 let id = 0;
 
 class SelectAbilityScores extends Component {
@@ -66,7 +64,6 @@ class SelectAbilityScores extends Component {
       ) : null;
     let { str, dex, con, int, wis, cha } = this.state;
     let abilityBonuses = this.props.abilityBonuses.length > 0 ? this.props.abilityBonuses.slice() : [0, 0, 0, 0, 0, 0];
-    console.log(abilityBonuses);
     const rows = [
       this.createRow('Strength', `${str}`, `${abilityBonuses[0]}`, `${str ? Math.ceil((str -= 10) / 2) : 0}`, `${str += abilityBonuses[0] + 10}`),
       this.createRow('Dexterity', `${dex}`, `${abilityBonuses[1]}`, `${dex ? Math.ceil((dex -= 10) / 2) : 0}`, `${dex += abilityBonuses[1] + 10}`),

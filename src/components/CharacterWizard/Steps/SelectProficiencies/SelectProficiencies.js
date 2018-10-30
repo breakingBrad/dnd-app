@@ -32,7 +32,6 @@ class SelectProficiencies extends Component {
     }
   }
 
-
   componentDidMount(props) {
     let formattedOptions = this.props.options.map(function (obj) {
       return {

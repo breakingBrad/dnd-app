@@ -5,7 +5,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { verifyAuth, cancel } from '../../ducks/reducers/reducer'
 import Button from '../Button/Button'
-
+import CharacterCard from '../Character/CharacterCard';
 
 class Dashboard extends Component {
   constructor() {
@@ -32,13 +32,17 @@ class Dashboard extends Component {
       weight: '',
       age: '',
       hair: '',
+      characters: [],
+      loading: true,
     }
   }
 
   componentWillMount() {
-      axios.get('/api/user/auth').then(res => {
+    axios.get('/api/user/auth')
+      .then(res => {
         if (res.status === 200) {
           this.props.verifyAuth(true);
+          this.fetchCharacters();
         } else {
           this.props.verifyAuth(false);
           this.props.historyd.push('/');
@@ -46,25 +50,59 @@ class Dashboard extends Component {
       })
   }
 
-  fetchCharacters() {
+  fetchCharacters = () => {
+    axios.get('/api/character/list')
+      .then(res => {
+        this.setState({ characters: res.data });
+        console.log(res.data);
+        this.setState({
+          characters: res.data,
+          loading: false,
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
+  viewCharacter(id) {
+    this.props.history.push(`/character/view/${id}`)
+  }
+
+  removeCharacter(id) {
   }
 
   render() {
+    const characters = this.state.characters
+    .map((character, i) => (
+            <CharacterCard
+                key={`character-list-${i}`}
+                {...character}
+                viewCharacter={(e) => { e.preventDefault(); this.viewCharacter(character._id) }}
+                removeCharacter={(e) => {e.preventDefault(); this.removeCharacter(character._id) }} />
+    ))
+
     return (
       <div>
       <NavBar/>
         <div className="dashboard-container">
+        <div className ="character-list-container">
+        <span className="character-list-header">
+        <h1>My Characters</h1>
             <Link className="dash-link" to="/character-wizard/0">
               <Button
-              className="dash-button"
+              className="new-char-button"
               color="primary"
               variant="contained"
               >
                 + New Character
               </Button>
               </Link>
-              {/* <h1>My Characters</h1> */}
+        </span>
+              <div className="character-list">
+                {characters}
+              </div>
+            </div>
           </div>
       </div>
     );
