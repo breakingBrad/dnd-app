@@ -7,16 +7,25 @@ module.exports = {
     const userId = req.session.user.userId;
     Character.find({ 'ownerUserId': userId })
       .then(characters => {
-        res.status(200).json(characters)
+        res.status(200).json(characters);
       })
       .catch(err => {
-        res.status(500).send({ error: "Oops! Something went wrong." });
-        console.log(err)
-      });
+        console.error(err);
+        res.status(500).send({ error: err.message });
+      })
   },
-  // getCharacter: (req, res, next) => {
-
-  // },
+  getCharacter: (req, res, next) => {
+    const userId = req.session.user.userId;
+    const { id } = req.params;
+    Character.find({ 'ownerUserId': userId, '_id': id })
+      .then(character => {
+        res.status(200).json(character);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send({ error: err.message });
+      })
+    },
   createCharacter: (req, res, next) => {
     console.log(`Adding new character`);
     console.log(req.body);
@@ -50,9 +59,9 @@ module.exports = {
         res.status(201).send(character);
       })
       .catch(err => {
-        res.status(500).send({ error: "Oops! Something went wrong." });
-        console.log(err)
-      });
+        console.error(err);
+        res.status(500).send({ error: err.message });
+      })
   },
   // editCharacter: (req, res, next) => {
 
