@@ -28,7 +28,6 @@ module.exports = {
       });
   },
   userLogin: (req, res, next) => {
-    console.log(req.body);
     let { username, password } = req.body;
     let errorMsg = { error: `Incorrect Username or Password.` };
     console.log(`Attempting Login for username: ${username}`);
