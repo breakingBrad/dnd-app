@@ -1,59 +1,50 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Button from '../Button/Button'
 
 class CharacterView extends Component {
   state = {
     character: null,
     loading: true,
-    message: '',
+    id: this.props.match.params.id,
   };
 
   componentWillMount() {
-    axios
-      .get(`/character/${this.props.match.params.id}`)
-      .then(response => {
-        this.setState({
-          item: response.data,
-        });
+    axios.get(`/api/character/${this.state.id}`)
+      .then(res => {
+        let character = res.data[0];
+        this.setState({ character: character, loading: false })
       })
       .catch(err => {
-        console.warn(err.response.data.message);
-        this.setState({
-          message: err.response.data.message,
-        });
+        console.warn(err);
       })
-      .then(() => {
-        this.setState({
-          loading: false,
-        });
-      });
   }
 
   render() {
-    const { character, loading, message } = this.state;
-
+    const { character, loading } = this.state;
     let content;
-
     if (loading) {
       content = <p className="loading">Loading</p>;
-    } else if (message) {
-      content = <p className="error-message">{message}</p>;
     } else {
       content = (
-        <div className="character">
-          <h2>{character.name}</h2>
-          <p className="content">{character.name}</p>
-          <p><b>Race:</b> {character.race.name}</p>
-          <p><b>Class:</b> {character.class.name}</p>
+        <div>
+          {/* <h2>Character View Coming Soon!!</h2> */}
+          <img className="construction" src={require(`../../images/under-construction.gif`)} alt="coming soon!" />
         </div>
-      );
+      )
     }
 
     return (
-      <div className="item-details-component">
-        <Link to="/">&lt;-- Back to Dashboard</Link>
-        {content}
+      <div className="dashboard-container">
+        <div className="character-view">
+          <span className="character-view-header">
+            <Link className="dash-link" to="/dashboard">
+              <Button className="new-char-button" color="primary" variant="contained">&larr; Back to Dashboard</Button></Link>
+              <h2>Character View Coming Soon!!</h2>
+          </span>
+            {content}
+        </div>
       </div>
     );
   }

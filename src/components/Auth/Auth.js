@@ -84,7 +84,7 @@ class Auth extends Component {
                 variant="contained"
                 onClick={() => this.login()}
               >
-              Login
+                Login
               </Button>
               <Button
                 className="auth-button"
@@ -92,7 +92,7 @@ class Auth extends Component {
                 variant="contained"
                 onClick={() => this.register()}
               >
-              Register
+                Register
           </Button>
             </div>
           </div>

@@ -4,8 +4,8 @@ import axios from 'axios';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { descriptionBuilder } from '../../../../ducks/reducers/reducer'
-import Button from '../../../Button/Button'
+import { descriptionBuilder } from '../../../../ducks/reducers/reducer';
+import Button from '../../../Button/Button';
 
 class Description extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class Description extends Component {
       weight: '',
       age: '',
       hair: '',
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -65,14 +65,28 @@ class Description extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    this.props.descriptionBuilder(this.state.name, this.state.gender, this.state.height, this.state.weight, this.state.age, this.state.hair);
+    this.props.descriptionBuilder(
+      this.state.name,
+      this.state.gender,
+      this.state.height,
+      this.state.weight,
+      this.state.age,
+      this.state.hair,
+    );
   }
 
   handleSubmit() {
-    this.props.descriptionBuilder(this.state.name, this.state.gender, this.state.height, this.state.weight, this.state.age, this.state.hair);
+    this.props.descriptionBuilder(
+      this.state.name,
+      this.state.gender,
+      this.state.height,
+      this.state.weight,
+      this.state.age,
+      this.state.hair,
+    );
     this.addCharacter();
   }
-  
+
   addCharacter = () => {
     const newCharacter = {
       raceId: this.props.raceId,
@@ -96,79 +110,129 @@ class Description extends Component {
       weight: this.state.weight,
       age: this.state.age,
       hair: this.state.hair,
-    }
+    };
     console.log(newCharacter);
-    axios.post(`/api/character/create`, newCharacter)
-    .then(response => {
-      this.props.history.push('/dashboard')
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
+    axios
+      .post(`/api/character/create`, newCharacter)
+      .then(response => {
+        this.props.history.push('/dashboard');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
-    const saveButton = 
-      this.state.name ? (
-      <span className="wizard-nav-next"><Button color="primary" variant="contained" raised component={Link} to="/character-wizard/4" onClick={() => this.handleSubmit()}>Save Character</Button></span>
-      ) : null;
+    const saveButton = this.state.name ? (
+      <span className="wizard-nav-next">
+        <Button
+          color="primary"
+          variant="contained"
+          raised
+          component={Link}
+          to="/character-wizard/4"
+          onClick={() => this.handleSubmit()}
+        >
+          Save Character
+        </Button>
+      </span>
+    ) : null;
     return (
       <div className="step-container">
         <div className="wizard-nav-container">
-          <span className="wizard-nav-prev"><Button variant="contained" raised component={Link} to="/character-wizard/3">&larr;</Button></span>
+          <span className="wizard-nav-prev">
+            <Button
+              variant="contained"
+              raised
+              component={Link}
+              to="/character-wizard/3"
+            >
+              &larr;
+            </Button>
+          </span>
         </div>
         <h1>Final Step: Details & Characteristics</h1>
         <p className="instructions">
-          Choose and input a name for your character, along with any other details you would like. When you've finished entering your details, you can finalize and save your character.
+          Choose and input a name for your character, along with any other
+          details you would like. When you've finished entering your details,
+          you can finalize and save your character.
         </p>
         <div className="select-container">
           <Paper className="description-input-container">
-          <div className="description-col-1">
-            <TextField className="description-input"
-              name="name" label="Character Name" value={this.state.name}
-              type="text"
-              required={true}
-              onChange={this.handleChange} InputLabelProps={{ shrink: true, }} margin="normal"
-            />
-            <TextField className="description-input"
-              name="gender" label="Gender" value={this.state.gender}
-              type="text"
-              onChange={this.handleChange} InputLabelProps={{ shrink: true, }} margin="normal"
-            />
-            <TextField className="description-input"
-              name="hair" label="Hair" value={this.state.hair}
-              type="text"
-              onChange={this.handleChange} InputLabelProps={{ shrink: true, }} margin="normal"
-            />
+            <div className="description-col-1">
+              <TextField
+                className="description-input"
+                name="name"
+                label="Character Name"
+                value={this.state.name}
+                type="text"
+                required={true}
+                onChange={this.handleChange}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+              />
+              <TextField
+                className="description-input"
+                name="gender"
+                label="Gender"
+                value={this.state.gender}
+                type="text"
+                onChange={this.handleChange}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+              />
+              <TextField
+                className="description-input"
+                name="hair"
+                label="Hair"
+                value={this.state.hair}
+                type="text"
+                onChange={this.handleChange}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+              />
             </div>
             <div className="description-col-2">
-            <TextField className="description-input"
-              name="height" label="Height" value={this.state.height}
-              type="text"
-              onChange={this.handleChange} InputLabelProps={{ shrink: true, }} margin="normal"
-            />
-            <TextField className="description-input"
-              name="weight" label="Weight" value={this.state.weight}
-              type="text"
-              onChange={this.handleChange} InputLabelProps={{ shrink: true, }} margin="normal"
-            />
-            <TextField className="description-input"
-              name="age" label="Age" value={this.state.age}
-              type="text"
-              onChange={this.handleChange} InputLabelProps={{ shrink: true, }} margin="normal"
-            />
+              <TextField
+                className="description-input"
+                name="height"
+                label="Height"
+                value={this.state.height}
+                type="text"
+                onChange={this.handleChange}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+              />
+              <TextField
+                className="description-input"
+                name="weight"
+                label="Weight"
+                value={this.state.weight}
+                type="text"
+                onChange={this.handleChange}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+              />
+              <TextField
+                className="description-input"
+                name="age"
+                label="Age"
+                value={this.state.age}
+                type="text"
+                onChange={this.handleChange}
+                InputLabelProps={{ shrink: true }}
+                margin="normal"
+              />
             </div>
           </Paper>
         </div>
-        <div className="save-changes-container">
-          {saveButton}
-        </div>
+        <div className="save-changes-container">{saveButton}</div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   raceId: state.raceId,
   race: state.race,
   abilityBonuses: state.abilityBonuses,
@@ -190,6 +254,9 @@ const mapStateToProps = (state) => ({
   weight: state.weight,
   age: state.age,
   hair: state.hair,
-})
+});
 
-export default connect(mapStateToProps, { descriptionBuilder }) (Description);
+export default connect(
+  mapStateToProps,
+  { descriptionBuilder },
+)(Description);

@@ -43,7 +43,7 @@ class SelectRace extends Component {
         raceId: this.props.raceId,
         race: this.props.race,
         abilityBonuses: this.props.abilityBonuses,
-      })
+      });
     }
   }
 
@@ -55,7 +55,7 @@ class SelectRace extends Component {
         race: this.props.race,
         abilityBonuses: this.props.abilityBonuses,
         selectedOption: value,
-      })
+      });
     }
   }
 
@@ -75,19 +75,45 @@ class SelectRace extends Component {
 
   render() {
     const race = this.state.race;
-    const nextButton = 
-      this.state.raceId ? (
-        <span className="wizard-nav-next"><Button variant="contained" raised component={Link} to="/character-wizard/2" onClick={() => this.props.raceBuilder(this.state.raceId, this.state.race, this.state.abilityBonuses)}>&rarr;</Button></span>
-      ) : null;
+    const nextButton = this.state.raceId ? (
+      <span className="wizard-nav-next">
+        <Button
+          variant="contained"
+          raised
+          component={Link}
+          to="/character-wizard/2"
+          onClick={() =>
+            this.props.raceBuilder(
+              this.state.raceId,
+              this.state.race,
+              this.state.abilityBonuses,
+            )
+          }
+        >
+          &rarr;
+        </Button>
+      </span>
+    ) : null;
     return (
       <div className="step-container">
         <div className="wizard-nav-container">
-          <span className="wizard-nav-prev"><Button variant="contained" raised component={Link} to="/character-wizard/0">&larr;</Button></span>
+          <span className="wizard-nav-prev">
+            <Button
+              variant="contained"
+              raised
+              component={Link}
+              to="/character-wizard/0"
+            >
+              &larr;
+            </Button>
+          </span>
           {nextButton}
         </div>
         <h1>Step One: Race</h1>
         <p className="instructions">
-        Choose a race in this step. Your choice of race will affect many aspects of your character. Your character's race affects everything from your ability scores to traits.  Choose wisely!
+          Choose a race in this step. Your choice of race will affect many
+          aspects of your character. Your character's race affects everything
+          from your ability scores to traits. Choose wisely!
         </p>
         <div className="select-container">
           <Select
@@ -158,21 +184,6 @@ class SelectRace extends Component {
               </p>
             </Paper>
           </div>
-          {/* <div className="save-changes-container">
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() =>
-                this.props.raceBuilder(
-                  this.state.raceId,
-                  this.state.race,
-                  this.state.abilityBonuses,
-                )
-              }
-            >
-              Save Selection
-            </Button>
-          </div> */}
         </div>
       </div>
     );

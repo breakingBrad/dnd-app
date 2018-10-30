@@ -34,6 +34,7 @@ class Dashboard extends Component {
       hair: '',
       characters: [],
       loading: true,
+      activeCharacter: {},
     }
   }
 
@@ -53,8 +54,6 @@ class Dashboard extends Component {
   fetchCharacters = () => {
     axios.get('/api/character/list')
       .then(res => {
-        this.setState({ characters: res.data });
-        console.log(res.data);
         this.setState({
           characters: res.data,
           loading: false,
@@ -65,9 +64,6 @@ class Dashboard extends Component {
       })
   }
 
-  viewCharacter(id) {
-    this.props.history.push(`/character/view/${id}`)
-  }
 
   removeCharacter(id) {
   }
@@ -78,7 +74,6 @@ class Dashboard extends Component {
             <CharacterCard
                 key={`character-list-${i}`}
                 {...character}
-                viewCharacter={(e) => { e.preventDefault(); this.viewCharacter(character._id) }}
                 removeCharacter={(e) => {e.preventDefault(); this.removeCharacter(character._id) }} />
     ))
 

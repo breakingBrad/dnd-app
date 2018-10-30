@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import AppBar from '@material-ui/core/AppBar'
+import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography'
+import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { verifyAuth } from '../../ducks/reducers/reducer'
+import { verifyAuth } from '../../ducks/reducers/reducer';
 import { Link, withRouter } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
-
 
 class NavBar extends Component {
   constructor(props) {
@@ -20,7 +19,7 @@ class NavBar extends Component {
       user_img: '',
       userId: '',
       anchorEl: null,
-    }
+    };
   }
 
   componentWillMount() {
@@ -33,11 +32,11 @@ class NavBar extends Component {
             username: user.username,
             user_img: user.user_img,
             userId: user.userId,
-          })
+          });
         } else {
           this.props.verifyAuth(false);
         }
-      })
+      });
     }
   }
 
@@ -53,10 +52,10 @@ class NavBar extends Component {
         username: '',
         user_img: '',
         userId: '',
-      })
+      });
       this.props.history.push('/');
-    })
-  }
+    });
+  };
 
   handleMenu = e => {
     this.setState({ anchorEl: e.currentTarget });
@@ -72,12 +71,12 @@ class NavBar extends Component {
     if (this.state.username !== '') {
       return (
         <div>
-          <AppBar className="app-bar" position="fixed" color="primary" >
+          <AppBar className="app-bar" position="fixed" color="primary">
             <Toolbar className="nav-bar">
-            <Link className="nav-link" to="/dashboard">
-              <Typography variant="display2" color="inherit">
-                Hero Roller
-              </Typography>
+              <Link className="nav-link" to="/dashboard">
+                <Typography variant="display2" color="inherit">
+                  Hero Roller
+                </Typography>
               </Link>
               <IconButton
                 className="nav-profile-button"
@@ -85,41 +84,56 @@ class NavBar extends Component {
                 aria-haspopup="true"
                 onClick={this.handleMenu}
                 color="inherit"
-                >
-              <Avatar alt={this.state.username} src={this.state.user_img} className="nav-profile-picture" />
+              >
+                <Avatar
+                  alt={this.state.username}
+                  src={this.state.user_img}
+                  className="nav-profile-picture"
+                />
               </IconButton>
               <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                    placement: 'bottom',
-                  }}
-                  transformOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                    placement: 'bottom',
-                  }}
-                  open={open}
-                  onClose={this.handleClose}
-                >
-                  <MenuItem onClick={this.handleClose} disabled={true}><Link className="menu-link" to="/user-profile">My Profile</Link></MenuItem>
-                  <MenuItem onClick={this.handleClose && this.logOut}>Log out</MenuItem>
-                </Menu>
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                  placement: 'bottom',
+                }}
+                transformOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                  placement: 'bottom',
+                }}
+                open={open}
+                onClose={this.handleClose}
+              >
+                <MenuItem onClick={this.handleClose} disabled={true}>
+                  <Link className="menu-link" to="/user-profile">
+                    My Profile
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={this.handleClose && this.logOut}>
+                  Log out
+                </MenuItem>
+              </Menu>
             </Toolbar>
           </AppBar>
         </div>
-      )
+      );
     }
-    return null
+    return null;
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   username: state.username,
   user_img: state.user_img,
   userId: state.userId,
-})
+});
 
-export default withRouter(connect(mapStateToProps, { verifyAuth })(NavBar));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { verifyAuth },
+  )(NavBar),
+);
