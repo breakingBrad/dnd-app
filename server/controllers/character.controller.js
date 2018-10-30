@@ -63,7 +63,16 @@ module.exports = {
         res.status(500).send({ error: err.message });
       })
   },
-  // editCharacter: (req, res, next) => {
-
-  // },
+  deleteCharacter: (req, res, next) => {
+    const userId = req.session.user.userId;
+    const { id } = req.params;
+    Character.deleteOne({ 'ownerUserId': userId, '_id': id })
+      .then(character => {
+        res.status(202).send({ message: `Character Successfully Deleted.`})
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send({ error: err.message });
+      })
+  },
 }

@@ -3,8 +3,8 @@ import NavBar from '../NavBar/NavBar';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { verifyAuth, cancel } from '../../ducks/reducers/reducer'
-import Button from '../Button/Button'
+import { verifyAuth, cancel } from '../../ducks/reducers/reducer';
+import Button from '../Button/Button';
 import CharacterCard from '../Character/CharacterCard';
 
 class Dashboard extends Component {
@@ -35,76 +35,87 @@ class Dashboard extends Component {
       characters: [],
       loading: true,
       activeCharacter: {},
-    }
+    };
   }
 
   componentWillMount() {
-    axios.get('/api/user/auth')
-      .then(res => {
-        if (res.status === 200) {
-          this.props.verifyAuth(true);
-          this.fetchCharacters();
-        } else {
-          this.props.verifyAuth(false);
-          this.props.historyd.push('/');
-        }
-      })
+    axios.get('/api/user/auth').then(res => {
+      if (res.status === 200) {
+        this.props.verifyAuth(true);
+        this.fetchCharacters();
+      } else {
+        this.props.verifyAuth(false);
+        this.props.historyd.push('/');
+      }
+    });
   }
 
   fetchCharacters = () => {
-    axios.get('/api/character/list')
+    axios
+      .get('/api/character/list')
       .then(res => {
         this.setState({
           characters: res.data,
           loading: false,
-        })
+        });
       })
       .catch(err => {
         console.log(err);
-      })
-  }
-
+      });
+  };
 
   removeCharacter(id) {
+    axios
+      .delete(`/api/character/${id}`)
+      .then(() => {
+        this.setState({
+          characters: this.state.characters.filter(c => c._id != id),
+        });
+      })
+      .catch(err => {
+        console.warn(err);
+      });
   }
 
   render() {
-    const characters = this.state.characters
-    .map((character, i) => (
-            <CharacterCard
-                key={`character-list-${i}`}
-                {...character}
-                removeCharacter={(e) => {e.preventDefault(); this.removeCharacter(character._id) }} />
-    ))
+    const characters = this.state.characters.map((character, i) => (
+      <CharacterCard
+        key={`character-list-${i}`}
+        {...character}
+        removeCharacter={e => {
+          e.preventDefault();
+          this.removeCharacter(character._id);
+        }}
+      />
+    ));
 
     return (
       <div>
-      <NavBar/>
+        <NavBar />
         <div className="dashboard-container">
-        <div className ="character-list-container">
-        <span className="character-list-header">
-        <h1>My Characters</h1>
-            <Link className="dash-link" to="/character-wizard/0">
-              <Button
-              className="new-char-button"
-              color="primary"
-              variant="contained"
-              >
-                + New Character
-              </Button>
+          <div className="character-list-container">
+            <span className="character-list-header">
+              <h1>My Characters</h1>
+              <Link className="dash-link" to="/character-wizard/0">
+                <Button
+                  className="new-char-button"
+                  color="primary"
+                  variant="contained"
+                  onClick={this.props.cancel}
+                >
+                  + New Character
+                </Button>
               </Link>
-        </span>
-              <div className="character-list">
-                {characters}
-              </div>
-            </div>
+            </span>
+            <div className="character-list">{characters}</div>
           </div>
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   raceId: state.raceId,
   race: state.race,
   abilityBonuses: state.abilityBonuses,
@@ -126,6 +137,9 @@ const mapStateToProps = (state) => ({
   weight: state.weight,
   age: state.age,
   hair: state.hair,
-})
+});
 
-export default connect(mapStateToProps, { verifyAuth, cancel })(Dashboard);
+export default connect(
+  mapStateToProps,
+  { verifyAuth, cancel },
+)(Dashboard);
