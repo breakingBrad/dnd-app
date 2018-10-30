@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from '../Button/Button'
+// import Paper from '@material-ui/core/Paper';
+// import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+// import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+// import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+// import Typography from '@material-ui/core/Typography';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 
 class CharacterView extends Component {
   state = {
@@ -29,8 +36,31 @@ class CharacterView extends Component {
     } else {
       content = (
         <div>
-          {/* <h2>Character View Coming Soon!!</h2> */}
-          <img className="construction" src={require(`../../images/under-construction.gif`)} alt="coming soon!" />
+        <div className="character-content-header">
+          <span className="content-names">
+          <h1>{ character.name }</h1>
+          <h2>{ character.race.name } { character.dndClass.name }</h2>
+          <div className="content title-content">
+            <h3>Level { character.level }</h3>
+          </div>
+          </span>
+          <span className="content-images">
+          <img className="display-img" src={require(`../../images/race-images/${character.raceId}.jpeg`)} alt="race img" />
+          <img className="display-img" src={require(`../../images/class-images/${character.classId}.jpeg`)} alt="class img" />
+          </span>
+        </div>
+        <hr/>
+        <div className="content-details">
+          <span className="content-abilities"> 
+            <hr/><b>STR</b><br/>{character.str}<hr/><br/>
+            <b>DEX</b><br/>{character.dex}<hr/><br/>
+            <b>CON</b><br/>{character.con}<hr/><br/>
+            <b>INT</b><br/>{character.int}<hr/><br/>
+            <b>WIS</b><br/>{character.wis}<hr/><br/>
+            <b>CHA</b><br/>{character.cha}<hr/><br/>
+          </span>
+          <hr/>
+          </div>
         </div>
       )
     }
@@ -41,9 +71,10 @@ class CharacterView extends Component {
           <span className="character-view-header">
             <Link className="dash-link" to="/dashboard">
               <Button className="new-char-button" color="primary" variant="contained">&larr; Back to Dashboard</Button></Link>
-              <h2>Character View Coming Soon!!</h2>
           </span>
-            {content}
+            <div className="character-content">
+              { content }
+            </div>
         </div>
       </div>
     );

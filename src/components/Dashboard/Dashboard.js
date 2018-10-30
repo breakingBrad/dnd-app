@@ -69,7 +69,7 @@ class Dashboard extends Component {
       .delete(`/api/character/${id}`)
       .then(() => {
         this.setState({
-          characters: this.state.characters.filter(c => c._id != id),
+          characters: this.state.characters.filter(c => c._id !== id),
         });
       })
       .catch(err => {
@@ -97,12 +97,7 @@ class Dashboard extends Component {
             <span className="character-list-header">
               <h1>My Characters</h1>
               <Link className="dash-link" to="/character-wizard/0">
-                <Button
-                  className="new-char-button"
-                  color="primary"
-                  variant="contained"
-                  onClick={this.props.cancel}
-                >
+                <Button className="new-char-button" color="primary" variant="contained" onClick={this.props.cancel}>
                   + New Character
                 </Button>
               </Link>
