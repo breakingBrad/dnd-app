@@ -45,7 +45,7 @@ class CharacterView extends Component {
           </div>
           </span>
           <span className="content-images">
-          <img className="display-img" src={require(`../../images/race-images/${character.raceId}.jpeg`)} alt="race img" /><br/><br/>
+          <img className="display-img" src={require(`../../images/race-images/${character.raceId}.jpeg`)} alt="race img" />
           <img className="display-img" src={require(`../../images/class-images/${character.classId}.jpeg`)} alt="class img" />
           </span>
         </div>
