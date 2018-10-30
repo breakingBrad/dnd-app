@@ -20,7 +20,8 @@ app.use(
       touchAfter: 24 * 3600 
     })
   }));
-
+  
+  
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -35,6 +36,7 @@ mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true })
 
 routerHub(app);
 
+app.use( express.static( `${__dirname}/../build` ) );
 app.get('/', (req, res) => {
   res.send('Hello, I live to Serve.');
 });
