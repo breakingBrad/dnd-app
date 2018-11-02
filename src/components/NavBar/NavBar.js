@@ -52,26 +52,6 @@ class NavBar extends Component {
 
   componentDidMount() {
     this.setState({ anchorEl: null });
-    axios.get('/api/user/auth').then(res => {
-      if (res.status === 200) {
-        this.props.verifyAuth(true);
-        let user = res.data;
-        this.setState({
-          loggedIn: true,
-          username: user.username,
-          user_img: user.user_img,
-          userId: user.userId,
-        });
-      } else {
-        this.props.verifyAuth(false);
-        this.setState({
-          loggedIn: false,
-          username: '',
-          user_img: '',
-          userId: '',
-        })
-      }
-    });
   }
 
   logOut = () => {
