@@ -82,6 +82,7 @@ class Auth extends Component {
                 className="auth-Button"
                 color="primary"
                 variant="contained"
+                type="submit"
                 onClick={() => this.login()}
               >
                 Login

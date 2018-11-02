@@ -128,7 +128,6 @@ class Description extends Component {
         <Button
           color="primary"
           variant="contained"
-          raised
           component={Link}
           to="/character-wizard/4"
           onClick={() => this.handleSubmit()}
@@ -143,7 +142,6 @@ class Description extends Component {
           <span className="wizard-nav-prev">
             <Button
               variant="contained"
-              raised
               component={Link}
               to="/character-wizard/3"
             >

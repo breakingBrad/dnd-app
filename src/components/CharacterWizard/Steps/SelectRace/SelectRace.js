@@ -79,7 +79,6 @@ class SelectRace extends Component {
       <span className="wizard-nav-next">
         <Button
           variant="contained"
-          raised
           component={Link}
           to="/character-wizard/2"
           onClick={() =>
@@ -100,7 +99,6 @@ class SelectRace extends Component {
           <span className="wizard-nav-prev">
             <Button
               variant="contained"
-              raised
               component={Link}
               to="/character-wizard/0"
             >

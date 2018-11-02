@@ -125,7 +125,6 @@ class SelectClass extends Component {
         <span className="wizard-nav-next">
           <Button
             variant="contained"
-            raised
             component={Link}
             to="/character-wizard/3"
             onClick={() =>
@@ -148,7 +147,6 @@ class SelectClass extends Component {
           <span className="wizard-nav-prev">
             <Button
               variant="contained"
-              raised
               component={Link}
               to="/character-wizard/1"
             >

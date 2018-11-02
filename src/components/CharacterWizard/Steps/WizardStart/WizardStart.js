@@ -10,9 +10,8 @@ const WizardStart = () => {
           <span className="wizard-nav-prev" />
           <span className="wizard-nav-next">
             <Button
-              variant="contained"
-              raised
               component={Link}
+              variant="contained"
               to="/character-wizard/1"
             >
               {' '}

@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const mongoose = require('mongoose'),
-User = require('../../models/user-model');
+  User = require('../../models/user-model');
 
 module.exports = {
   userRegister: (req, res, next) => {
@@ -46,28 +46,29 @@ module.exports = {
     })
   },
   getUser: (req, res, next) => {
-    const userId = req.session.userId;
+    const userId = req.session.user.userId;
     console.log(`Fetching User Info for User Id: ${userId}`);
-    User.findById(req.session.userId)
-    .exec(function (error, user) {
-      if (error) {
-        return next(error);
-      } else {
-        if (user === null) {
-          var err = new Error('Not authorized! Go back!');
-          err.status = 400;
-          return next(err);
+    User.findById(req.session.user.userId)
+      .exec(function (error, user) {
+        if (error) {
+          return next(error);
         } else {
-          return res.status(200).send(user);
+          if (user === null) {
+            var err = new Error('Not authorized! Go back!');
+            err.status = 400;
+            return next(err);
+          } else {
+            req.session.user = user;
+            return res.status(200).send(user);
+          }
         }
-      }
-    });
+      });
   },
   userLogout: (req, res, next) => {
     if (req.session.user) {
       console.log(`Logging out user: ${req.session.user.username}`);
       req.session.destroy();
-      res.status(200).send({ message: 'You have successfully logged out.'})
+      res.status(200).send({ message: 'You have successfully logged out.' })
     }
   },
   verifyAuth: (req, res, next) => {
@@ -77,4 +78,48 @@ module.exports = {
       res.status(401).send({ message: 'User is not logged in.' });
     }
   },
+  userEdit: (req, res, next) => {
+    const userId = req.session.user.userId;
+    const { user_img } = req.body;
+    if (userId)
+      User.findById(userId)
+        .exec(function (error, user) {
+          if (error) {
+            return next(error);
+          } else {
+            if (user === null) {
+              var err = new Error('Not authorized! Go back!');
+              err.status = 400;
+              return next(err);
+            } else {
+              user.user_img = user_img;
+              req.session.user_img = user_img;
+              user.save(function (error) {
+                return res.status(200).send(user);
+              })
+            }
+          }
+        })
+  },
+  userRemove: (req, res, next) => {
+    const { userId } = req.params;
+    console.log('editing user');
+    if (userId)
+      User.findOneAndRemove(userId)
+        .exec(function (error, user) {
+          if (error) {
+            return next(error);
+          } else {
+            if (user === null) {
+              var err = new Error('Not authorized! Go back!');
+              err.status = 400;
+              return next(err);
+            } else {
+              user.save(function (error) {
+                return res.status(200).send({ message: `Deleted User Id: ${userId}` });
+              })
+            }
+          }
+        })
+  }
 }

@@ -8,10 +8,10 @@ import CharacterView from './components/Character/CharacterView';
 
 export default (
   <Switch>
-    <Route exact path="/" component={ Auth } />
+    <Route path="/character/:id" component={ CharacterView } />
     <Route path="/character-wizard" component={ CharacterWizard } />
     <Route path="/dashboard" component={ Dashboard } />
     <Route path="/user-profile" component={ Profile } />
-    <Route path="/character/:id" component={ CharacterView } />
+    <Route exact path="/" component={ Auth } />
   </Switch>
 )

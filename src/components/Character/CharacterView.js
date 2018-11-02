@@ -29,13 +29,13 @@ class CharacterView extends Component {
       content = <p className="loading">Loading</p>;
     } else {
       content = (
-        <div>
+        <div className="character-view">
         <div className="character-content-header">
           <span className="content-names">
-          <h1>{ character.name }</h1>
-          <h2>{ character.race.name } { character.dndClass.name }</h2>
+          <h1 className="char-name">{ character.name }</h1>
+          <h2 className="char-class-race">{ character.race.name } { character.dndClass.name }</h2>
           <div className="content title-content">
-            <h3>Level { character.level }</h3>
+            <h3 className="char-level">Level { character.level }</h3>
           </div>
           </span>
           <span className="content-images">
@@ -46,12 +46,12 @@ class CharacterView extends Component {
         <hr/>
         <div className="content-details">
           <span className="content-abilities"> 
-            <hr/><b>STR</b><br/>{character.str}<hr/><br/>
-            <b>DEX</b><br/>{character.dex}<hr/><br/>
-            <b>CON</b><br/>{character.con}<hr/><br/>
-            <b>INT</b><br/>{character.int}<hr/><br/>
-            <b>WIS</b><br/>{character.wis}<hr/><br/>
-            <b>CHA</b><br/>{character.cha}<hr/><br/>
+            <div className="attr"><b>STR</b><br/>{character.str}</div>
+            <div className="attr"><b>DEX</b><br/>{character.dex}</div>
+            <div className="attr"><b>CON</b><br/>{character.con}</div>
+            <div className="attr"><b>INT</b><br/>{character.int}</div>
+            <div className="attr"><b>WIS</b><br/>{character.wis}</div>
+            <div className="attr"><b>CHA</b><br/>{character.cha}</div>
           </span>
           <hr/>
           </div>

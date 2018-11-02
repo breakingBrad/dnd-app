@@ -67,9 +67,8 @@ class SelectAbilityScores extends Component {
         this.state.cha ? (
           <span className="wizard-nav-next">
             <Button
-              variant="contained"
-              raised
               component={Link}
+              variant="contained"
               to="/character-wizard/4"
               onClick={() =>
                 this.props.abilitiesBuilder(
@@ -142,7 +141,6 @@ class SelectAbilityScores extends Component {
           <span className="wizard-nav-prev">
             <Button
               variant="contained"
-              raised
               component={Link}
               to="/character-wizard/2"
             >

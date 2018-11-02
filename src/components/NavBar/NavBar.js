@@ -18,6 +18,7 @@ class NavBar extends Component {
       username: '',
       user_img: '',
       userId: '',
+      loggedIn: false,
       anchorEl: null,
     };
   }
@@ -29,22 +30,52 @@ class NavBar extends Component {
           this.props.verifyAuth(true);
           let user = res.data;
           this.setState({
+            loggedIn: true,
             username: user.username,
             user_img: user.user_img,
             userId: user.userId,
           });
         } else {
           this.props.verifyAuth(false);
+          this.setState({
+            loggedIn: false,
+            username: '',
+            user_img: '',
+            userId: '',
+          })
         }
       });
+    } else {
+      return null;
     }
   }
 
   componentDidMount() {
     this.setState({ anchorEl: null });
+    axios.get('/api/user/auth').then(res => {
+      if (res.status === 200) {
+        this.props.verifyAuth(true);
+        let user = res.data;
+        this.setState({
+          loggedIn: true,
+          username: user.username,
+          user_img: user.user_img,
+          userId: user.userId,
+        });
+      } else {
+        this.props.verifyAuth(false);
+        this.setState({
+          loggedIn: false,
+          username: '',
+          user_img: '',
+          userId: '',
+        })
+      }
+    });
   }
 
   logOut = () => {
+    this.setState({ anchorEl: null });
     axios.post('/api/user/logout').then(res => {
       console.log(res.data.message);
       this.props.verifyAuth(false);
@@ -95,7 +126,7 @@ class NavBar extends Component {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: 'bottom',
+                  vertical: 'top',
                   horizontal: 'right',
                   placement: 'bottom',
                 }}
@@ -107,12 +138,12 @@ class NavBar extends Component {
                 open={open}
                 onClose={this.handleClose}
               >
-                <MenuItem onClick={this.handleClose} disabled={true}>
+                <MenuItem onClick={this.handleClose} disabled={false}>
                   <Link className="menu-link" to="/user-profile">
                     My Profile
                   </Link>
                 </MenuItem>
-                <MenuItem onClick={this.handleClose && this.logOut}>
+                <MenuItem onClick={this.logOut}>
                   Log out
                 </MenuItem>
               </Menu>
@@ -126,9 +157,7 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = state => ({
-  username: state.username,
-  user_img: state.user_img,
-  userId: state.userId,
+  loggedIn: state.loggedIn,
 });
 
 export default withRouter(
