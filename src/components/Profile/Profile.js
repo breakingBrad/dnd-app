@@ -36,13 +36,6 @@ class Profile extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  // handleSubmit = () => {
-  //   const promises = [];
-  //   promises.push(this.setState({ loading: true }));
-  //   promises.push(this.updateUser());
-  //   return Promise.all(promises);
-  // }
-
   toggleEdit = () => {
     if (!this.state.edit) {
       this.setState({ edit: true });
