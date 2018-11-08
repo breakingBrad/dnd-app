@@ -45,3 +45,8 @@ const port = 4000;
 app.listen(port, () => {
   console.log(`Server listening at localhost:${port}`);
 });
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
