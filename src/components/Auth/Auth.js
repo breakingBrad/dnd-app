@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '../Button/Button'
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { verifyAuth } from '../../ducks/reducers/reducer'
+import { verifyAuth } from '../../ducks/reducers/reducer';
 
 class Auth extends Component {
   constructor() {
@@ -68,7 +68,7 @@ class Auth extends Component {
     return (
       <Paper className="auth-container">
         <div className="auth-header-container">
-          <img src="https://www.freeiconspng.com/uploads/black-dice-d20-icon-15.png" alt="logo" className="auth-icon" />
+          <img src={require(`../../images/main-dark.png`)} alt="logo" className="auth-icon" />
           <h1>Hero Roller</h1>
           <div className="auth-input-container">
             <p>Username:</p>
