@@ -15,103 +15,81 @@ body {
   width: 50vw;
   background-color: #f9f9fd;
 }
-
 .auth-header-container {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-
-.auth-header-container,
-img {
+.auth-header-container, img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
 .auth-icon-container {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
 .auth-icon {
   width: 100px;
   align-content: center;
 }
-
 .auth-button-container {
   display: flex;
   justify-content: center;
   justify-items: space-around;
   margin: 10px;
 }
-
 .auth-button-container .MuiButton-containedPrimary-77 {
   margin: 5px;
 }
-
 .MuiButton-root-90 {
   color: rgb(255, 255, 255);
 }
-
 .nav-link {
   text-decoration: none;
   color: white;
   text-decoration-color: #f9f9f9;
   outline: 0;
 }
-
 .dash-link {
   text-decoration: none;
   color: white;
   text-decoration-color: #f9f9f9;
 }
-
 .menu-link {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.87);
   outline: 0;
 }
-
 .nav-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
-.nav-bar,
-.title,
-.nav-link {
+.nav-bar, .title, .nav-link {
   flex: 1;
 }
-
 .character-list-container {
   flex: 1;
   align-items: stretch;
   width: auto;
 }
-
-.character-list-header,
-.character-view-header,
-.character-content-header {
+.character-list-header, .character-view-header, .character-content-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-content: center;
 }
-
 .character-content-header {
   height: 180px;
 }
-
 .character-list-header h1 {
   margin-top: 0;
 }
 .new-char-button {
   flex: 2;
 }
-
 .character-list {
   margin: 0;
   padding: 0;
@@ -120,26 +98,21 @@ img {
   justify-content: center;
   grid-gap: 20px;
 }
-
 @media (min-width: 900px) {
   .character-list {
-    grid-template-columns: repeat(2, 380px);
-  }
+      grid-template-columns: repeat(2, 380px);
+ }
 }
-
-@media (min-width: 1285px) {
+@media (min-width: 1385px) {
   .character-list {
-    grid-template-columns: repeat(3, 380px);
-  }
+      grid-template-columns: repeat(3, 380px);
+ }
 }
-
 .character-card-list {
   list-style: none;
 }
-
 .character-card {
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   padding: 40px;
   margin: 0px;
   border-radius: 2px;
@@ -148,11 +121,8 @@ img {
   display: flex;
   flex-direction: column;
   background-repeat: no-repeat;
-  background: #f9f9f9
-    url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png)
-    repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
-
 .character-card img {
   display: block;
   margin: 0 auto;
@@ -160,55 +130,44 @@ img {
   height: 150px;
   border-radius: 4px;
 }
-
 .item-description {
   flex: 1;
 }
-
 .character-card .content {
   font-size: 16px;
 }
-
 .character-card .title-content {
   transform: translateY(-1.3em);
 }
-
 .character-card p {
   margin-top: 0;
 }
-
 .character-card .character-controls {
   display: flex;
   margin-top: 1em;
 }
-
 .character-card .character-controls > * {
   flex: 1;
 }
-
 .character-card .character-controls > :not(:first-child) {
   margin-left: 15px;
 }
-
 .nav-profile-picture {
   margin-left: -12;
   margin-right: 20;
   width: 40px;
   height: 40px;
 }
-
 .nav-profile-picture {
   background-color: #f9f9fd;
   margin-bottom: 0;
   right: 0;
 }
-
 .auth-container h1 {
   font-size: 60px;
   margin: 10px;
   text-align: center;
 }
-
 .auth-input-container {
   display: flex;
   flex-direction: column;
@@ -217,7 +176,6 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
-
 .input {
   border-radius: 2px;
   border: 0.5;
@@ -227,13 +185,11 @@ img {
   margin: 4px 5px;
   width: 225px;
 }
-
 .nav-user-icon {
   flex: 2;
   position: absolute;
   right: 0;
 }
-
 .dashboard-container {
   margin-top: 100px;
   padding-top: 85px;
@@ -247,17 +203,14 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background-color: #ffff;
 }
-
 .wizard-expansion-panel {
   margin: 0.5%;
   justify-content: stretch;
 }
-
 .MuiExpansionPanelDetails-root-101 {
   margin: auto;
   justify-content: space-evenly;
@@ -268,7 +221,6 @@ img {
 .expansion-summary {
   box-shadow: 0px 3px 5px -3px rgba(0, 0, 0, 0.7);
 }
-
 .character-wizard-container {
   display: flex;
   flex-direction: column;
@@ -277,7 +229,6 @@ img {
   width: 90vw;
   margin-top: 50px;
 }
-
 .wizard-start-continer {
   display: flex;
   flex-direction: column;
@@ -285,7 +236,6 @@ img {
   padding: 5%;
   width: 90vw;
 }
-
 .step-container {
   flex: 1;
   align-items: stretch;
@@ -300,33 +250,27 @@ img {
   padding-left: 1em;
   padding-right: 1em;
   justify-content: space-around;
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   background-color: #ffff;
 }
-
 .instructions {
   margin: 1em;
   min-width: auto;
   padding: auto;
 }
-
 .select-container {
   align-items: stretch;
   padding: 1em;
 }
-
 .display-selection-container {
   display: flex;
   flex-direction: row;
   align-items: stretch;
 }
-
 .display-img {
   border-radius: 4px;
 }
-
 .selection-img-container {
   flex: 1;
   justify-items: center;
@@ -337,15 +281,11 @@ img {
   align-items: stretch;
   min-width: 140px;
   background-repeat: no-repeat;
-  background: #f9f9f9
-    url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png)
-    repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
-
 .selection-img-container h2 {
   text-align: center;
 }
-
 .display-selection {
   flex: 2;
   padding: 5px 20px 20px;
@@ -355,13 +295,11 @@ img {
   align-items: stretch;
   width: fit-content;
   background-repeat: no-repeat;
-  background: #f9f9f9
-    url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png)
-    repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
-
 .display-selection-proficiences {
-  /* flex: 3; */
+ /* flex: 3;
+  */
   padding: 20px 20px 20px;
   margin-top: 10px;
   margin-left: 5px;
@@ -369,19 +307,14 @@ img {
   align-items: stretch;
   min-height: fit-content;
   background-repeat: no-repeat;
-  background: #f9f9f9
-    url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png)
-    repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
-
 .proficiency-choices {
   padding: 10px;
   margin-top: 5px;
   margin-bottom: 50px;
 }
-
 /* ability input */
-
 .ability-input-container {
   flex: 1;
   display: flex;
@@ -391,11 +324,8 @@ img {
   overflow-x: auto;
   margin: 1em;
   background-repeat: no-repeat;
-  background: #f9f9f9
-    url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png)
-    repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
-
 .ability-table-container {
   flex: 2;
   display: flex;
@@ -406,16 +336,12 @@ img {
   margin: 1em;
   min-width: auto;
   background-repeat: no-repeat;
-  background: #f9f9f9
-    url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png)
-    repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
-
 .abilities-display {
   min-width: auto;
   margin: 5px 20px 20px;
 }
-
 .description-input-container {
   flex: 1;
   padding: 1em;
@@ -428,11 +354,8 @@ img {
   margin-left: 5px;
   margin-right: 5px;
   background-repeat: no-repeat;
-  background: #f9f9f9
-    url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png)
-    repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
-
 .description-col-1 {
   display: flex;
   flex: 1;
@@ -440,7 +363,6 @@ img {
   padding: 1em;
   width: auto;
 }
-
 .description-col-2 {
   display: flex;
   flex: 2;
@@ -454,7 +376,6 @@ img {
   justify-content: space-evenly;
   align-items: center;
 }
-
 .wizard-nav-container {
   display: flex;
   flex-direction: row;
@@ -462,18 +383,15 @@ img {
   align-items: space-between;
   justify-content: space-between;
 }
-
 .wizard-nav-next {
   flex-flow: row;
   float: right;
 }
-
 .character-view {
   flex: 1;
   align-items: stretch;
   width: auto;
 }
-
 .character-content {
   flex: 1;
   justify-items: center;
@@ -484,33 +402,26 @@ img {
   align-items: stretch;
   min-width: 140px;
   background-repeat: no-repeat;
-  background: #f9f9f9
-    url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png)
-    repeat;
+  background: #f9f9f9 url(https://media-waterdeep.cursecdn.com/attachments/0/84/background_texture.png) repeat;
 }
-
 .content-names {
   flex: 1;
   padding: 1em;
 }
-
 .content-names .title-content {
   transform: translateY(-1.3em);
 }
-
 .content-images {
   display: flex;
   flex-direction: row;
   padding: 1em;
 }
-
 .content-images img {
   width: 120px;
   height: 120px;
   border-radius: 8px;
   padding: 4px;
 }
-
 .content-abilities {
   display: flex;
   flex-direction: row;
@@ -519,40 +430,33 @@ img {
   align-content: center;
   justify-items: center;
 }
-
-
 .char-name {
   font-size: 4em;
   padding-top: 0;
   margin-top: 0;
 }
-
 .char-class-race {
   transform: translateY(-2em);
   font-style: italic;
 }
-
 .attr {
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-  0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
-  border-color:  rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.2);
   padding: 1.5em 3em;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-size: contain;
 }
-
 .char-level {
   transform: translateY(-2em);
   margin-top: 0;
   font-size: 1em;
   font-weight: 400;
 }
-
 .character-view hr {
-	height: 10px;
-	border: 0;
-	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+  height: 10px;
+  border: 0;
+  box-shadow: 0 10px 10px -10px #8c8b8b inset;
 }
